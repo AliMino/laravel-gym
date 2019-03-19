@@ -20,4 +20,7 @@
         </div>
     </div>
 </div>
+
+{{$message['msg']}}
+
 @endsection
