@@ -25,7 +25,7 @@ links                               admin   city manager    gym manager     view
     * Coaches                       *   |   *           |   *           |
     * Attendance                    *   |   *           |   *           |
     * Buy Package For User          *   |   *           |   *           |
-    * Revenue​                       *   |   *           |   *           |
+    * Revenue​                       *   |               |               |
 
 tables
     * gym_managers      (name, email(unique), password(6chars or more), national_id(unique), avatar_image(jpg/jpeg, default), is_banned)
