@@ -20,6 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::group(['middleware' => ['auth']], function () {
     
 });
+
+// gym
+Route::get('/gyms/create', 'Gym\CreateController@create')->name('gyms.create');
+Route::post('/gyms','Gym\StoreController@store')->name('gyms.store');

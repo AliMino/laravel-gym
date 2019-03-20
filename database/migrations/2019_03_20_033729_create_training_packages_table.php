@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGymsTable extends Migration
+class CreateTrainingPackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateGymsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gyms', function (Blueprint $table) {
+        Schema::create('training_packages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('name');
-            $table->string('image')->nullable();
-            $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('gym_manager_id');
+            $table->unsignedBigInteger('no_of_sessions');
+            $table->unsignedBigInteger('price_cent');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateGymsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gyms');
+        Schema::dropIfExists('training_packages');
     }
 }

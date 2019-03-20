@@ -21,6 +21,4 @@
     </div>
 </div>
 
-{{$message['msg']}}
-
 @endsection
