@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Gym;
+namespace App\Http\Controllers\TrainingPackage;
 
-use App\Gym;
+use App\TrainingPackage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
     public function store() {
-        echo('store gym');
-        // dd(request());
-        Gym::create(request()->all());
+        echo('store training package');
+        TrainingPackage::create(request()->all());
         // return redirect()->route('home');
     }
 }
