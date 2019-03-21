@@ -14,7 +14,18 @@ class TrainingSession extends Model
         'package_id',
     ];
 
-    public function TrainingPackage() {
-        return $this->belongsTo(TrainingPackage::class);
+//    public function TrainingPackage() {
+//        return $this->belongsTo(TrainingPackage::class);
+//    }
+
+    public function gym()
+    {
+        return $this->belongsTo(Gym,'gym_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany(User,'attendence'
+            ,'session_id','user_id');
     }
 }

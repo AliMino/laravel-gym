@@ -11,4 +11,9 @@ class Gym extends Model
         'city_id',
         'gym_manager_id',
     ];
+
+    public function city()
+    {
+        return $this->belongsTo(city,'city_id');
+    }
 }

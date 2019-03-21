@@ -19,7 +19,9 @@ class CreateGymsTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->unsignedBigInteger('gym_manager_id');
+//            $table->foreign('gym_manager_id')->references('id')->on('users');
         });
     }
 

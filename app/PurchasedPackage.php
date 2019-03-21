@@ -15,4 +15,19 @@ class PurchasedPackage extends Model
         'gym_id'
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User,'user_id');
+    }
+
+    public function trainingpackage()
+    {
+        return $this->belongsTo(TrainingPackage,'package_id');
+    }
+
+    public function gym()
+    {
+        return $this->belongsTo(Gym,'gym_id');
+    }
 }

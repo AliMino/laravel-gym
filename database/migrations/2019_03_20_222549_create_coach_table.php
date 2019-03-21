@@ -21,4 +21,5 @@ class CreateCoachTable extends Migration
     }
 
 
+
 }
