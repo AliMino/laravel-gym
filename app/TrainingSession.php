@@ -28,4 +28,11 @@ class TrainingSession extends Model
         return $this->belongsToMany(User,'attendence'
             ,'session_id','user_id');
     }
+
+    public function coach()
+    {
+        return $this->belongsToMany(Coach,'coaches_sessions'
+            ,'session_id','coach_id');
+    }
+
 }
