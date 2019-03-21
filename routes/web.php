@@ -21,9 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
-    
-});
 
 // gym
 Route::get('/gyms/create', 'Gym\CreateController@create')->name('gyms.create');
@@ -36,3 +33,6 @@ Route::post('/packages','TrainingPackage\StoreController@store')->name('packages
 // training session
 Route::get('/sessions/create', 'TrainingSession\CreateController@create')->name('sessions.create');
 Route::post('/sessions','TrainingSession\StoreController@store')->name('sessions.store');
+
+// Coaches
+Route::resource('coaches','Coach\CoachController');
