@@ -39,3 +39,5 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 
 // Coaches
 Route::resource('coaches','Coach\CoachController');
+Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
+
