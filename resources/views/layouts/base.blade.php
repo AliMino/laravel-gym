@@ -109,9 +109,9 @@
 
                 @if(auth()->user() && auth()->user()->can('manage users'))
                 <li>
-                    <a href="pages/widgets.html">
-                        <i class="fa fa-th"></i> <span>Users</span>
-
+                    <a href="/users">
+                        <i class="fa fa-th"></i>
+                        <span>Users</span>
                     </a>
                 </li>
                 @endif
@@ -121,7 +121,6 @@
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
                         <span>Cities</span>
-
                     </a>
                 </li>
                 @endif
@@ -131,7 +130,6 @@
                     <a href="#">
                         <i class="fa fa-laptop"></i>
                         <span>Gyms</span>
-
                     </a>
                 </li>
                 @endif
@@ -139,27 +137,26 @@
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span>Training Packages</span>
-
+                        <i class="fa fa-edit"></i>
+                        <span>Training Packages</span>
                     </a>
-
                 </li>
                 @endif
 
                 @if(auth()->user() && auth()->user()->can('manage coaches'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-table"></i> <span>Coaches</span>
+                        <i class="fa fa-table"></i>
+                        <span>Coaches</span>
                     </a>
-
                 </li>
                 @endif
 
                 @if(auth()->user() && auth()->user()->can('manage attendance'))
                 <li>
                     <a href="pages/calendar.html">
-                        <i class="fa fa-calendar"></i> <span>Attendance</span>
-
+                        <i class="fa fa-calendar"></i>
+                        <span>Attendance</span>
                     </a>
                 </li>
                 @endif
@@ -167,7 +164,8 @@
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li>
                     <a href="pages/mailbox/mailbox.html">
-                        <i class="fa fa-envelope"></i> <span>BuyPackage</span>
+                        <i class="fa fa-envelope"></i>
+                        <span>BuyPackage</span>
                     </a>
                 </li>
                 @endif
@@ -175,8 +173,8 @@
                 @if(auth()->user() && auth()->user()->can('manage revenue'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-folder"></i> <span>Revenue</span>
-
+                        <i class="fa fa-folder"></i>
+                        <span>Revenue</span>
                     </a>
                 </li>
                 @endif
@@ -188,21 +186,13 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
+        <!-- content -->
         <section class="content">
             @yield('content')
-
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    {{-- <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
-        </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-        reserved.
-    </footer> --}}
 
 </div>
         <!-- ./wrapper -->
