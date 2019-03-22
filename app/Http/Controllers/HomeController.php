@@ -29,6 +29,13 @@ class HomeController extends Controller
         dd (auth()->user()->role()->name);
         return view('home');
     }
+    private function getPermission(string $name) {
+        $permission = Permission::where(['name' => $name])->first();
+        if($permission === null) {
+            $permission = Permission::create(['name' => $name]);
+        }
+        return $permission;
+    }
     // roles-permissions:
     //          'admin': 'manage city managers', 'manage gym managers', 'manage users'
     //          'city manager'
@@ -36,45 +43,18 @@ class HomeController extends Controller
         $adminRole = Role::where(['name' => 'admin'])->first();
         $cityManagerRole = Role::where(['name' => 'city manager'])->first();
 
-        $manageCityManagersPermission = Permission::where(['name' => 'manage city managers'])->first();
-        $manageGymManagersPermission = Permission::where(['name' => 'manage gym managers'])->first();
-        $manageUsersPermission = Permission::where(['name' => 'manage users'])->first();
-        $manageCitiesPermission = Permission::where(['name' => 'manage cities'])->first();
-        $manageGymsPermission = Permission::where(['name' => 'manage gyms'])->first();
-        $manageTrainingPackagesPermission = Permission::where(['name' => 'manage training packages'])->first();
-        $manageCoachesPermission = Permission::where(['name' => 'manage coaches'])->first();
-        $manageAttendancePermission = Permission::where(['name' => 'manage attendance'])->first();
-        $manageRevenuePermission = Permission::where(['name' => 'manage revenue'])->first();
+        $manageCityManagersPermission = $this->getPermission('manage city managers');
+        $manageGymManagersPermission = $this->getPermission('manage gym managers');
+        $manageUsersPermission = $this->getPermission('manage users');
+        $manageCitiesPermission = $this->getPermission('manage cities');
+        $manageGymsPermission = $this->getPermission('manage gyms');
+        $manageTrainingPackagesPermission = $this->getPermission('manage training packages');
+        $manageCoachesPermission = $this->getPermission('manage coaches');
+        $manageAttendancePermission = $this->getPermission('manage attendance');
+        $manageRevenuePermission = $this->getPermission('manage revenue');
         
         if($adminRole === null) {
-            Role::create(['name' => 'admin']);
-        }
-        if($manageCityManagersPermission === null) {
-            Permission::create(['name' => 'manage city managers']);
-        }
-        if($manageGymManagersPermission === null) {
-            Permission::create(['name' => 'manage gym managers']);
-        }
-        if($manageUsersPermission === null) {
-            Permission::create(['name' => 'manage users']);
-        }
-        if($manageCitiesPermission === null) {
-            Permission::create(['name' => 'manage cities']);
-        }
-        if($manageGymsPermission === null) {
-            Permission::create(['name' => 'manage gyms']);
-        }
-        if($manageTrainingPackagesPermission === null) {
-            Permission::create(['name' => 'manage training packages']);
-        }
-        if($manageCoachesPermission === null) {
-            Permission::create(['name' => 'manage coaches']);
-        }
-        if($manageAttendancePermission === null) {
-            Permission::create(['name' => 'manage attendance']);
-        }
-        if($manageRevenuePermission === null) {
-            Permission::create(['name' => 'manage revenue']);
+            $adminRole = Role::create(['name' => 'admin']);
         }
         
         $adminRole->givePermissionTo($manageCityManagersPermission);
@@ -86,7 +66,7 @@ class HomeController extends Controller
         $adminRole->givePermissionTo($manageCoachesPermission);
         $adminRole->givePermissionTo($manageAttendancePermission);
         $adminRole->givePermissionTo($manageRevenuePermission);
-
+        
         if(auth()->user()->email === "admin@admin.com") {
             auth()->user()->assignRole('admin');
         }
