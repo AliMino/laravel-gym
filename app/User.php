@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -46,6 +47,8 @@ class User extends Authenticatable
     }
 
     public function role() {
-        // return $this->
+        return DB::table('roles')
+        ->join('model_has_roles', 'model_has_roles.role_id', 'roles.id')
+        ->first();
     }
 }
