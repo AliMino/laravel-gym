@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Coach;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Coach;
+use DataTables;
+
 class CoachController extends Controller
 {
     public function index()
     {
-        return view('coaches.index',[
-            'coaches' => datatables()->of(Coach::all())->toJson(),
-        ]);
+       // dd(datatables()->of(Coach::all())->toJson());
+       //dd(datatables()->of(Coach::all())->toJson());
+        return view('coaches.index');
     }
     public function create()
     {
@@ -38,5 +40,8 @@ class CoachController extends Controller
         $coach = Coach::find($id);
         $coach->delete();
      return redirect()->route('coaches.index');
+    }
+    public function getdata(){
+        return datatables()->of(Coach::all())->toJson();
     }
 }

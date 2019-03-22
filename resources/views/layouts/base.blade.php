@@ -29,6 +29,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https:////cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -87,7 +89,7 @@
 
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                
+
                 @if(auth()->user() && auth()->user()->can('manage gym managers'))
                 <li class="active treeview">
                     <a href="#">
@@ -145,7 +147,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage coaches'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('coaches.index')}}">
                         <i class="fa fa-table"></i>
                         <span>Coaches</span>
                     </a>
@@ -196,7 +198,6 @@
 
 </div>
         <!-- ./wrapper -->
-
         <!-- jQuery 3 -->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
         <!-- jQuery UI 1.11.4 -->
@@ -234,5 +235,15 @@
         <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{asset('dist/js/demo.js')}}"></script>
+        <script src="https:////cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+        <div class="content-wrapper">
+            <!-- content -->
+            <div>
+            <section class="content">
+                @yield('scripts')
+            </section>
+            <!-- /.content -->
+        </div>
 </body>
 </html>
