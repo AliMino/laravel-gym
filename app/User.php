@@ -44,4 +44,8 @@ class User extends Authenticatable
         return $this->belongsToMany(TrainingSession,'attendence'
             ,'user_id','session_id');
     }
+
+    public function role() {
+        // return $this->
+    }
 }

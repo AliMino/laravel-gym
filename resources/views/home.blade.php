@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<span>
+{{-- <span>
     <h1>
         <mark>
             Roles
@@ -70,7 +70,16 @@
             false
         @endif
     </h1>
-</span>
+
+    <h1>
+        User has any of [add gym manager]:
+        @if(auth()->user() && auth()->user()->hasAnyPermission(['add gym manager']))
+            true
+        @else
+            false
+        @endif
+    </h1>
+</span> --}}
 
 
 @endsection

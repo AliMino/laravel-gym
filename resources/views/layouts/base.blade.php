@@ -74,21 +74,30 @@
                     <img src="" class="img-circle" >
                 </div>
                 <div class="pull-left info">
-                    <p>Name</p>
-                    {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
+                    <p>Welcome
+                        @if(auth()->user() !== null)
+                            {{auth()->user()->name}}
+                        @else
+                            Guest
+                        @endif
+                    </p>
                 </div>
             </div>
 
 
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
+                
+                @if(auth()->user() && auth()->user()->can('manage gym managers'))
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Gym Managers</span>
-
-            </span>
+                        <i class="fa fa-dashboard"></i>
+                        <span>Gym Managers</span>
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage city managers'))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
@@ -96,12 +105,18 @@
                     </a>
 
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage users'))
                 <li>
                     <a href="pages/widgets.html">
                         <i class="fa fa-th"></i> <span>Users</span>
 
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage cities'))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
@@ -109,6 +124,9 @@
 
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage gyms'))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
@@ -116,36 +134,53 @@
 
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span>Training Packages,</span>
+                        <i class="fa fa-edit"></i> <span>Training Packages</span>
 
                     </a>
 
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage coaches'))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-table"></i> <span>Coaches</span>
                     </a>
 
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage attendance'))
                 <li>
                     <a href="pages/calendar.html">
                         <i class="fa fa-calendar"></i> <span>Attendance</span>
 
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li>
                     <a href="pages/mailbox/mailbox.html">
                         <i class="fa fa-envelope"></i> <span>BuyPackage</span>
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage revenue'))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-folder"></i> <span>Revenue</span>
 
                     </a>
                 </li>
+                @endif
+
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -161,13 +196,13 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
+    {{-- <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.0
         </div>
         <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
         reserved.
-    </footer>
+    </footer> --}}
 
 </div>
         <!-- ./wrapper -->

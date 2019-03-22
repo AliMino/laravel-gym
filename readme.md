@@ -1,3 +1,7 @@
+to seed admin:
+            composer dump-autoload
+            php artisan db:seed --class=UsersTableSeeder
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
