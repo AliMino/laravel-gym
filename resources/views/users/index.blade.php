@@ -1,11 +1,12 @@
 @extends('layouts.base')
 @section('content')
 
+    @if(auth()->user())
     <h3>
         Filters
     </h3>
     <span>
-        @if(!auth()->user() || !auth()->user()->hasAnyPermission('manage cities|manage city managers'))
+        @if(auth()->user()->can('manage cities'))
             <section style="display:inline">
                 <label>
                     filter by city
@@ -26,7 +27,7 @@
             </section>
         @endif
 
-        @if(!auth()->user() || !auth()->user()->hasAnyPermission('manage gyms|manage gym managers'))
+        @if(auth()->user()->can('manage gyms'))
             <section style="display:inline">
                 <label>
                     filter by gym
@@ -41,5 +42,8 @@
         @endif
     </span>
 
+    {{-- result --}}
+    {{-- @if(auth()->user() || !auth()->user()->hasAnyPermission('manage cities|manage city managers')) --}}
 
+    @endif
 @endsection
