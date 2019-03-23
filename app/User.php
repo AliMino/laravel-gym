@@ -48,6 +48,11 @@ class User extends Authenticatable
             ,'user_id','session_id');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function getRole() {
         return DB::table('roles')
         ->join('model_has_roles', 'model_has_roles.role_id', 'roles.id')

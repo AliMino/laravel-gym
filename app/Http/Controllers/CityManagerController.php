@@ -16,11 +16,11 @@ class CityManagerController extends Controller
      */
     public function index()
     {
-        return view('citymanagers.index',[
+        return view('cityManagers.index',[
             'citymanagers'=>User::role('city manager')->get(),
         ]);
-        /* $citymanagers=User::role('citymanagers')->get();
-        dd($citymanagers->name) ; */
+        /* $citymanagers=User::role('city manager')->get();
+        dd($citymanagers) ; */
     }
 
     /**
@@ -30,7 +30,7 @@ class CityManagerController extends Controller
      */
     public function create()
     {
-        return view('citymanagers.create',[
+        return view('cityManagers.create',[
             'cities'=>City::all()
         ]);
     }
@@ -44,7 +44,7 @@ class CityManagerController extends Controller
     public function store(Request $request)
     {
         User::create($request->all());
-        return redirect()->route('citymanagers.index');
+        return redirect()->route('cityManagers.index');
     }
 
     /**
@@ -55,7 +55,7 @@ class CityManagerController extends Controller
      */
     public function show(User $user)
     {
-        return view('citymanagers.show',[
+        return view('cityManagers.show',[
             'citymanager'=>$user,
         ]);
     }
@@ -68,7 +68,7 @@ class CityManagerController extends Controller
      */
     public function edit(User $user)
     {
-        return view('citymanagers.edit',[
+        return view('cityManagers.edit',[
             'citymanager'=>$user,
             'cities'=>City::all(),
         ]);
@@ -89,7 +89,7 @@ class CityManagerController extends Controller
             'password'=>$request->password,
             'national_id'=>$request->national_id,
             'image'=>$request->image,
-            'city'=>$request->city,
+            'city_id'=>$request->city_id,
         ]);
     }
 
@@ -103,6 +103,6 @@ class CityManagerController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('citymanagers.index');
+        return redirect()->route('cityManagers.index');
     }
 }
