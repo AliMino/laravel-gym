@@ -43,11 +43,11 @@
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+        
 <div class="wrapper">
-
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="{{ url('home') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>Gym</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -198,6 +198,7 @@
 
 </div>
         <!-- ./wrapper -->
+        
         <!-- jQuery 3 -->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
         <!-- jQuery UI 1.11.4 -->

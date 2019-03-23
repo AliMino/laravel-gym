@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $this->manageRoles();
-        dd (auth()->user()->role()->name);
+        // dd (auth()->user()->role()->name);
         return view('home');
     }
     private function getPermission(string $name) {
