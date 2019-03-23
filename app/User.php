@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        //Managers
+        'national_id','image',
     ];
 
     /**
@@ -46,7 +48,7 @@ class User extends Authenticatable
             ,'user_id','session_id');
     }
 
-    public function role() {
+    public function getRole() {
         return DB::table('roles')
         ->join('model_has_roles', 'model_has_roles.role_id', 'roles.id')
         ->first();
