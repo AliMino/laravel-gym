@@ -6,7 +6,9 @@ use App\Http\Requests\RegisterAuthRequest;
 use App\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\JWT;
 
 
 class AuthController extends Controller
@@ -38,8 +40,12 @@ class AuthController extends Controller
             ], 401);
         }
 
+        $id = Auth::user()->id;
+        $currentuser = Member::find($id);
+
         return response()->json([
             'success' => true,
+            'data'=>$currentuser,
             'token' => $jwt_token,
         ]);
     }
