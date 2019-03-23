@@ -1,5 +1,9 @@
 @extends('layouts.base')
 @section('content')
+<a class="btn btn-app" href="{{route('coaches.create')}}">
+    <i class="fa fa-edit"></i>
+        Add Coach
+  </a>
 <table id="coach" class="display" style="width:100%">
     <thead>
         <tr>
@@ -35,7 +39,6 @@
                         return '<a href="/'+row.id+'" class="table-edit" data-id="' + row.id + '">EDIT</a>'
                     }
                 },
-
             ],
         } );
     } );
