@@ -6,6 +6,8 @@ use App\Http\Requests\RegisterAuthRequest;
 use App\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class AuthController extends Controller
 {
@@ -22,5 +24,23 @@ class AuthController extends Controller
             'success' => true,
             'data' => $member
         ], 200);
+    }
+
+    public function login(Request $request)
+    {
+        $input = $request->only('email', 'password');
+        $jwt_token = null;
+        config()->set( 'auth.defaults.guard', 'api' );
+        if (!$jwt_token = JWTAuth::attempt($input)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid Email or Password',
+            ], 401);
+        }
+
+        return response()->json([
+            'success' => true,
+            'token' => $jwt_token,
+        ]);
     }
 }
