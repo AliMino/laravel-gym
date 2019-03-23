@@ -15,7 +15,6 @@ class StoreController extends Controller
         // dd(request()->package_id);
         $package = TrainingPackage::where('id', '=', request()->package_id)->first();
         $request->name = "pkg" . $package->price_cent . "_" . $package->no_of_sessions;
-        // dd(now());
         TrainingSession::create([
             'name' => $request->name,
             'start_at' => now(),

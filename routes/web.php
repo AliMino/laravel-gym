@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     // return view('welcome');
-    return view('home');
+    return view('users.index');
     // return redirect('/home');
 });
 
@@ -48,4 +48,5 @@ Route::get('/citymanagers/{manager}','CityManagerController@show')->name('cityma
 Route::get('/citymanagers/{manager}/edit','CityManagerController@edit')->name('citymanagers.edit');
 Route::put('/citymanagers/{manager}','CityManagerController@update')->name('citymanagers.update');
 Route::delete('/citymanagers/{manager}','CityManagerController@destroy')->name('citymanagers.destroy');
+Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
