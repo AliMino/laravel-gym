@@ -14,8 +14,13 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "spatie/laravel-permission": "^2.36",
+<<<<<<< HEAD
         "tymon/jwt-auth": "^1.0@dev",
         "yajra/laravel-datatables-oracle": "~9.0"
+=======
+        "tymon/jwt-auth": "dev-develop",
+        "yajra/laravel-datatables-oracle": "^9.0"
+>>>>>>> 70030372594334ea3fbdb0bb930dc9cfbf1275f9
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

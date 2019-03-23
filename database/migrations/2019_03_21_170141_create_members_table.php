@@ -21,6 +21,7 @@ class CreateMembersTable extends Migration
             $table->string('password');
             $table->enum('gender',['male','female']);
             $table->dateTime('date of birth');
+            $table->string('profile img');
             $table->timestamps();
         });
     }

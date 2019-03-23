@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "81bd952ac36cd28b59f65f5615eaa94d",
+=======
+    "content-hash": "3eb15b07cf53b30a2d1292ec6afdf781",
+>>>>>>> 70030372594334ea3fbdb0bb930dc9cfbf1275f9
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3102,7 +3106,7 @@
         },
         {
             "name": "tymon/jwt-auth",
-            "version": "1.0.0-rc.4.1",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
