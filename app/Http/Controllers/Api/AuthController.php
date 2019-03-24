@@ -25,7 +25,7 @@ class AuthController extends Controller
         $member->save();
 
         $member->sendEmailVerificationNotification();
-        
+
 
         return $this->login($request);
 
@@ -50,6 +50,18 @@ class AuthController extends Controller
             'success' => true,
             'data'=>$currentuser,
             'token' => $jwt_token,
+        ]);
+    }
+    
+    public function logout(Request $request)
+    {
+
+        $token = JWTAuth::getToken();
+
+        JWTAuth::invalidate($token);
+        return response()->json([
+            'success' => true,
+            'message' => 'User logged out successfully'
         ]);
     }
 }

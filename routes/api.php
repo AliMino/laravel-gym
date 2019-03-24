@@ -21,3 +21,9 @@ Auth::routes(['verify' => true]);
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
 
+
+//Route::group(['middleware' => 'auth.jwt'], function () {
+    Route::get('logout', 'Api\AuthController@logout');
+
+//});
+
