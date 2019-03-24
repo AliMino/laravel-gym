@@ -25,11 +25,10 @@ class AuthController extends Controller
         $member->save();
 
         $member->sendEmailVerificationNotification();
+        
 
-        return response()->json([
-            'success' => true,
-            'data' => $member
-        ], 200);
+        return $this->login($request);
+
     }
 
     public function login(Request $request)
