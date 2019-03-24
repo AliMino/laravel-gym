@@ -41,3 +41,34 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 Route::resource('coaches','Coach\CoachController');
 Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// buying packages
+Route::get('/payments/create', 'Payment\PaymentController@create')->name('payment.create');
+Route::post('/payments', 'Payment\PaymentController@store')->name('payment.store');
+
+
+
+
+
+

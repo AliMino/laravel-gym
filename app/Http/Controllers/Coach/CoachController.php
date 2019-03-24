@@ -38,7 +38,11 @@ class CoachController extends Controller
     {
         $coach = Coach::find($id);
         $coach->delete();
-     return redirect()->route('coaches.index');
+        return response()->json([
+
+            'success' => 'Record deleted successfully!'
+        ]);
+     //return redirect()->route('coaches.index');
     }
     public function getdata(){
         return datatables()->of(Coach::all())->toJson();
