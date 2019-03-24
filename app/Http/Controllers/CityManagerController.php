@@ -52,10 +52,10 @@ class CityManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show( $user)
     {
         return view('cityManagers.show',[
-            'citymanager'=>$user,
+            'citymanager'=>User::find($user),
         ]);
     }
 
@@ -65,10 +65,10 @@ class CityManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit( $user)
     {
         return view('cityManagers.edit',[
-            'citymanager'=>$user,
+            'citymanager'=>User::find($user),
             'cities'=>City::all(),
         ]);
     }
@@ -80,16 +80,16 @@ class CityManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(Request $request, $user)
     {
-        $user->update([
+        User::find($user)->update([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>$request->password,
             'national_id'=>$request->national_id,
-            'image'=>$request->image,
+            'image'=>$request->avatar_img,
             'city_id'=>$request->city_id,
         ]);
+        return redirect()->route('citymanagers.index');
     }
 
     /**

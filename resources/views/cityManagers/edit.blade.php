@@ -2,31 +2,29 @@
 @section('content')
 
 
-    <form action="{{route('citymanagers.store')}}" method="POST">
+    <form action="{{route('citymanagers.update',$citymanager->id)}}" method="POST">
         @csrf
+        {{method_field('PUT')}}
+
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
-            <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+            <input name="name" type="text" value="{{$citymanager->name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
         </div>
 
         <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email">
+            <input name="email" type="email" value="{{$citymanager->email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email">
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
-            <input name="password" type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password">
-        </div>
 
         <div class="form-group">
             <label for="exampleInputEmail1">National ID</label>
-            <input name="national_id" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+            <input name="national_id" type="text" value="{{$citymanager->national_id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
         </div>
 
         <div class="form-group">
             <label for="exampleInputEmail1">Image</label>
-            <input name="image" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+            <input name="image" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
         </div>
 
 
