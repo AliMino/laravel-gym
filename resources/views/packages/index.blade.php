@@ -8,14 +8,12 @@
                 <div class="box-header">
                     <h3 class="box-title">Packages Table</h3><br>
                     <a href='/packages/create' style="margin-top: 10px;" class="btn btn-success">Create Package</a>
-                </div>
-                <!-- /.box-header -->
+                </div>                
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Name</th>
+                            <th>Id</th>                            
                             <th>Gym</th>
                             <th>No of Sessions</th>
                             <th>Price in Dollars </th>
@@ -26,14 +24,10 @@
                         </tr>
                         </thead>
                     </table>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
+                </div>                
+            </div>            
+        </div>        
+    </div>    
     <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -55,8 +49,7 @@
             </div>
         </div>
     </div>
-</section>
-        <!-- /.content -->
+</section>        
 @endsection
 @section('extra_scripts')
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -69,25 +62,13 @@
                 },
                 url: '/data_packages',
                 dataType : 'json',
-                type: 'get',
-                // processData: false,
-                // contentType: false,
-
-                // success:function(response) {
-                //
-                //     console.log(response);
-                // },
-                // error: function (response) {
-                //     alert(' Cant Save This Documents !');
-                //     console.log(response);
-                // }
+                type: 'get',            
             },
             columns: [
-                { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
+                { data: 'id', name: 'id' },                
                 { data: 'gyms.name', name: 'gyms.name' },
-                { data: 'number_of_sessions', name: 'number_of_sessions' },
-                { data: 'package_price', name: 'package_price'},
+                { data: 'no_of_sessions', name: 'no_of_sessions' },
+                { data: 'price_cents', name: 'price_cents'},
                 { data: 'created_at', name: 'created_at' },
                 { data: 'updated_at', name: 'updated_at' },
 
