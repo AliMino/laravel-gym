@@ -4,8 +4,9 @@
     <i class="fa fa-edit"></i>
         Add Coach
   </a>
-  <button type="button" id="deleteRecord" data-id="'+row.id+'">Delete</button>
+
 <table id="coach" class="display" style="width:100%">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     <thead>
         <tr>
             <th>ID</th>
@@ -41,33 +42,55 @@
                     }
                 },{
                     mRender: function (data, type, row) {
-                       return '<meta name="csrf-token" content="{{ csrf_token() }}"><a type="button" id="deleteRecord" data-id="'+row.id+'">Delete</a>'
+                       return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger btn-flat"> Delete </button></a>'
                     }
                 }
             ]
         } );
-        $("#deleteRecord").click(function(){
-        console.log("function called");
-
-        var id = $(this).data("id");
-        var token = $("meta[name='csrf-token']").attr("content");
-        $.ajax(
+        $(document).on('click', '.delete', function(){
+        var id = $(this).attr('id');
+        if(confirm("Are you sure you want to Delete this Coach?"))
         {
-            url: "coaches/"+id,
-            type: 'DELETE',
-            data: {
-                "id": id,
-                "_token": token,
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-            success: function (){
-                console.log("it Works");
+                url:"/coaches/"+id,
+                type:'DELETE',
+                success:function(data)
+                {
+                    alert("Coach deleted successfully");
+                    $('#coach').DataTable().ajax.reload();
                 }
+            })
+        }
+        else
+        {
+            return false;
+        }
+    });
+//         $("#deleteRecord").click(function(){
+//         console.log("function called");
 
-});
+//         var id = $(this).data("id");
+//         var token = $("meta[name='csrf-token']").attr("content");
+//         $.ajax(
+//         {
+//             url: "coaches/"+id,
+//             type: 'DELETE',
+//             data: {
+//                 "id": id,
+//                 "_token": token,
+//                 },
+//             success: function (){
+//                 console.log("it Works");
+//                 }
+
+// });
 
 
 
-});
+// });
 
     } );
 
