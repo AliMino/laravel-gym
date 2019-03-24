@@ -19,6 +19,8 @@ class AuthController extends Controller
         $member->name = $request->name;
         $member->email = $request->email;
         $member->gender=$request->gender;
+        $member->profile_img=$request->profile_img;
+        $member->date_of_birth=$request->date_of_birth;
         $member->password = bcrypt($request->password);
         $member->save();
 
