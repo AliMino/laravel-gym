@@ -9,6 +9,8 @@ use App\TrainingPackage;
 use App\Gym;
 use App\Http\Requests\Payment\StorePaymentRequest;
 use Cartalyst\Stripe\Stripe;
+use App\PurchasedPackage;
+use DB;
 class PaymentController extends Controller
 {
     public function create()
@@ -18,6 +20,21 @@ class PaymentController extends Controller
     public function store(StorePaymentRequest $request)
     {
         $request->validated();
+        $package=DB::table('training_packages')->where('id', $request->get('package-id'))->first();
+        $this->acceptPayment($request,$package);
+        $payment=[
+            "_token"=>$request->get('_token'),
+            "user_id"=>$request->get('member-id'),
+            'package_id'=>$request->get('package-id'),
+            'paid_price'=> $package->price_cent,
+            'num_of_sessions'=> $package->no_of_sessions,
+            'attended_sessions'=>0,
+            'gym_id'=>$request->get('gym-id'),
+        ];
+        PurchasedPackage::create($payment);
+        return redirect()->route('packages.index');
+    }
+    private function acceptPayment($request,$package){
         $stripe = Stripe::make(env('STRIPE_SECRET'));
         try {
             $token = $stripe->tokens()->create([
@@ -33,10 +50,13 @@ class PaymentController extends Controller
             }
             $charge = $stripe->charges()->create([
                 'card' => $token['id'],
-                'currency' => 'USD',
-                'amount'   => 20,
+                'currency' => 'Cent',
+                'amount'   => $package->price_cent,
             ]);
-             return 'Payment Success';
+
+
+
+
             } catch (\Exception $ex) {
                 return $ex->getMessage();
             }
@@ -47,14 +67,4 @@ class PaymentController extends Controller
 
 
 
-
-
-
-
-
-// $ch = \Stripe\Charge::retrieve(
-//     "ch_1EHWPuH1duK36duxqIphkQJq",
-//     ['api_key' => "sk_test_dK0QWZrL5rdmp8XuDHaT1uxk00Lx8CsVTw"],
-//   );
-//   $ch->capture(); // Uses the same API Key.
 

@@ -62,17 +62,11 @@
                 <div class='col-xs-4 form-group cvc required'>
 
                         <label class='control-label'>CVV</label>
-
-                        <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvv">
-
+                            <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvv">
                         </div>
-
                         <div class='col-xs-4 form-group expiration'>
-
-                        <label class='control-label'>Expiration</label>
-
-                        <input class='form-control card-expiry-month' placeholder='MM' size='4' type='text' name="expiry_month">
-
+                            <label class='control-label'>Expiration</label>
+                            <input class='form-control card-expiry-month' placeholder='MM' size='4' type='text' name="expiry_month">
                         </div>
 
                         <div class='col-xs-4 form-group expiration'>
