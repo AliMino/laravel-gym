@@ -48,8 +48,8 @@ class HomeController extends Controller
     //          'city manager'
     private function manageRoles() {
         $adminRole = $this->getRole('admin');
-        $cityManagerRole = $this->getRole('admin');
-        $gymManagerRole = $this->getRole('admin');
+        $cityManagerRole = $this->getRole('city manager');
+        $gymManagerRole = $this->getRole('gym manager');
 
         $manageCityManagersPermission = $this->getPermission('manage city managers');
         $manageGymManagersPermission = $this->getPermission('manage gym managers');
