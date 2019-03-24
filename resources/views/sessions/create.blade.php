@@ -11,20 +11,20 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputPassword1">Start timestamp</label>
+            <label for="exampleInputPassword1">Session Start</label>
             <br>
             <h1>date picker here</h1>
         </div>
 
         <div class="form-group">
-            <label for="exampleInputPassword1">End timestamp</label>
+            <label for="exampleInputPassword1">Session end</label>
             <br>
             <h1>date picker here</h1>
         </div>
 
         <div class="form-group">
             <label for="exampleInputPassword1">Gym</label>
-            
+
             <select class="form-control" name="gym_id">
                 @foreach($gyms as $gym)
                     <option value="{{$gym->id}}">{{$gym->name}}</option>

@@ -45,6 +45,10 @@ Route::delete('/packages/{package}','TrainingPackage\DeleteController@destroy')-
 // training sessions
 Route::get('/sessions/create', 'TrainingSession\CreateController@create')->name('sessions.create');
 Route::post('/sessions','TrainingSession\StoreController@store')->name('sessions.store');
+Route::get('/sessions','TrainingSession\TrainingSessionController@index')->name('sessions.index');
+Route::get('sessionsdata', 'TrainingSession\TrainingSessionController@getdata')->name('sessions.data');
+
+
 
 // users
 Route::get('/users', 'UsersController@index')->name('users.index');

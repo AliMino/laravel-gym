@@ -69,28 +69,6 @@
             return false;
         }
     });
-//         $("#deleteRecord").click(function(){
-//         console.log("function called");
-
-//         var id = $(this).data("id");
-//         var token = $("meta[name='csrf-token']").attr("content");
-//         $.ajax(
-//         {
-//             url: "coaches/"+id,
-//             type: 'DELETE',
-//             data: {
-//                 "id": id,
-//                 "_token": token,
-//                 },
-//             success: function (){
-//                 console.log("it Works");
-//                 }
-
-// });
-
-
-
-// });
 
     } );
 
