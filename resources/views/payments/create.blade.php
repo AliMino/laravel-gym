@@ -63,7 +63,7 @@
 
                         <label class='control-label'>CVV</label>
 
-                        <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvvNumber">
+                        <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvv">
 
                         </div>
 
@@ -71,7 +71,7 @@
 
                         <label class='control-label'>Expiration</label>
 
-                        <input class='form-control card-expiry-month' placeholder='MM' size='4' type='text' name="ccExpiryMonth">
+                        <input class='form-control card-expiry-month' placeholder='MM' size='4' type='text' name="expiry_month">
 
                         </div>
 
@@ -79,7 +79,7 @@
 
                         <label class='control-label'> </label>
 
-                        <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' name="ccExpiryYear">
+                        <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' name="expiry_year">
 
 
 

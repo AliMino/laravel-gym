@@ -24,9 +24,9 @@ class StorePaymentRequest extends FormRequest
     {
         return  [
             'card_no' => 'required',
-            'ccExpiryMonth' => 'required',
-            'ccExpiryYear' => 'required',
-            'cvvNumber' => 'required',
+            'expiry_month' => 'required',
+            'expiry_year' => 'required',
+            'cvv' => 'required',
         ];
     }
     public function messages()
