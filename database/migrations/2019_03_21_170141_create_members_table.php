@@ -20,8 +20,8 @@ class CreateMembersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('gender',['male','female']);
-            $table->dateTime('date of birth');
-            $table->string('profile img');
+            $table->date('date_of_birth');
+            $table->string('profile_img');
             $table->timestamps();
         });
     }

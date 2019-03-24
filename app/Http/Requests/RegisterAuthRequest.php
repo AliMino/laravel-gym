@@ -28,6 +28,8 @@ class RegisterAuthRequest extends FormRequest
             'email' => 'required|email|unique:members',
             'password' => 'required|confirmed|min:6|max:20',
             'gender' => 'in:male,female',
+            'profile_img' => 'required',
+            'date_of_birth' => 'required|date_format:Y-m-d',
 
         ];
     }
