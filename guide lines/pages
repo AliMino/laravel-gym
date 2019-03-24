@@ -1,0 +1,31 @@
+Gyms:
+    name
+    created at              (date only 'mutator')
+    city manager name       (hwo created the gym 'for admin only')
+    when deleting a gym, no training sessions must be attached
+
+Gym Managers:
+    crud & ban/unban gym managers
+    edit
+    delete
+    ban/unban
+    when creating a gym manager, drop-down list of gyms will be shown
+Training Sessions:
+    edit & delete only if no users are attending
+    editable fields are date&time fields only
+    when creating a new session no overlapping between sessions for the same gym
+    creation form will have
+Buy a package for users:
+    drop-down list of users will be there
+    drop-down list of training packages
+    visa number (stripe)
+Revenue:
+    if gym manager      total revenue of his gym
+    if gym manager      purchases history in datatables (user name, user email, package name, purchasing price for each user)
+    if city manager     total revenue of his city
+    if city manager     purchases history in datatables (user name, user email, package name, purchasing price for each user, gym name)
+    if admin            purchases history in datatables (user name, user email, package name, purchasing price for each user, gym name, city name)
+Attendance:
+    in datatables
+    if city manager     (user name, email, session name, attendance time, attendance date, gym name)
+    if admin            (user name, email, session name, attendance time, attendance date, gym name, city name)

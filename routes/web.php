@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return view('users.index');
-    // return redirect('/home');
+    return view('welcome');
+    // added by ali kamel fro testing purposes
+    // return view('users.index');
 });
 
 Auth::routes();
@@ -22,13 +22,25 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// gyms
+
+// gym
+Route::get('/gyms', 'Gym\StoreController@index')->name('gyms.index');
 Route::get('/gyms/create', 'Gym\CreateController@create')->name('gyms.create');
 Route::post('/gyms','Gym\StoreController@store')->name('gyms.store');
+Route::get('/gyms/{gym}/edit','Gym\EditController@edit')->name('gyms.edit');
+Route::put('/gyms/{gym}','Gym\EditController@update')->name('gyms.update');
+Route::delete('/gyms/{gym}','Gym\DeleteController@destroy')->name('gyms.destroy');
+/* Route::resource('gyms','Gym\StoreController');
+Route::get('gymdata', 'Gym\StoreController@getdata')->name('gym.data'); */
 
-// training packages
+// training package
+Route::get('/packages','TrainingPackage\StoreController@index')->name('packages.index');
 Route::get('/packages/create', 'TrainingPackage\CreateController@create')->name('packages.create');
 Route::post('/packages','TrainingPackage\StoreController@store')->name('packages.store');
+Route::get('/packages/{package}/edit','TrainingPackage\EditController@edit')->name('packages.edit');
+Route::put('/packages/{package}','TrainingPackage\EditController@update')->name('packages.update');
+Route::delete('/packages/{package}','TrainingPackage\DeleteController@destroy')->name('packages.destroy');
+
 
 // training sessions
 Route::get('/sessions/create', 'TrainingSession\CreateController@create')->name('sessions.create');
@@ -39,6 +51,35 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 
 // Coaches
 Route::resource('coaches','Coach\CoachController');
+Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// buying packages
+Route::get('/payments/create', 'Payment\PaymentController@create')->name('payment.create');
+Route::post('/payments', 'Payment\PaymentController@store')->name('payment.store');
+
+
 
 //City Manager
 Route::get('/citymanagers','CityManagerController@index')->name('citymanagers.index');
@@ -48,5 +89,7 @@ Route::get('/citymanagers/{manager}','CityManagerController@show')->name('cityma
 Route::get('/citymanagers/{manager}/edit','CityManagerController@edit')->name('citymanagers.edit');
 Route::put('/citymanagers/{manager}','CityManagerController@update')->name('citymanagers.update');
 Route::delete('/citymanagers/{manager}','CityManagerController@destroy')->name('citymanagers.destroy');
-Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
+Route::get('/citymanagersdata', 'CityManagerController@getdata')->name('citymanagers.data');
+
+
 
