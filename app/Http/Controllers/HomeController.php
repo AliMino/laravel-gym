@@ -36,12 +36,20 @@ class HomeController extends Controller
         }
         return $permission;
     }
+    private function getRole(string $name) {
+        $role = Role::where(['name' => $name])->first();
+        if($role === null) {
+            $role = Role::create(['name' => $name]);
+        }
+        return $role;
+    }
     // roles-permissions:
     //          'admin': 'manage city managers', 'manage gym managers', 'manage users'
     //          'city manager'
     private function manageRoles() {
-        $adminRole = Role::where(['name' => 'admin'])->first();
-        $cityManagerRole = Role::where(['name' => 'city manager'])->first();
+        $adminRole = $this->getRole('admin');
+        $cityManagerRole = $this->getRole('admin');
+        $gymManagerRole = $this->getRole('admin');
 
         $manageCityManagersPermission = $this->getPermission('manage city managers');
         $manageGymManagersPermission = $this->getPermission('manage gym managers');
@@ -52,10 +60,6 @@ class HomeController extends Controller
         $manageCoachesPermission = $this->getPermission('manage coaches');
         $manageAttendancePermission = $this->getPermission('manage attendance');
         $manageRevenuePermission = $this->getPermission('manage revenue');
-        
-        if($adminRole === null) {
-            $adminRole = Role::create(['name' => 'admin']);
-        }
         
         $adminRole->givePermissionTo($manageCityManagersPermission);
         $adminRole->givePermissionTo($manageGymManagersPermission);

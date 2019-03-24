@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return view('users.index');
-    // return redirect('/home');
+    return view('welcome');
+    // added by ali kamel fro testing purposes
+    // return view('users.index');
 });
 
 Auth::routes();
