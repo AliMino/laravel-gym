@@ -22,6 +22,8 @@ class AuthController extends Controller
         $member->password = bcrypt($request->password);
         $member->save();
 
+        $member->sendEmailVerificationNotification();
+
         return response()->json([
             'success' => true,
             'data' => $member
