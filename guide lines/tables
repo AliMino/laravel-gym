@@ -1,0 +1,32 @@
+gym & city managers:
+                    name
+                    password            (at least 6 chars)
+                    email               (unique)
+                    national id         (unique)
+                    avatar image        (default | jpg.jpeg)
+
+training packages:
+                    name
+                    price               (in cents)
+                    no. of sessions
+training sessions:
+                    name
+                    day
+                    starts at
+                    finishes at
+                    coaches         (third table - many to many)
+coaches:
+
+coaches_session:
+                    coach id
+                    session id
+                    package id
+                    gym id
+
+bought packages:
+                    user id
+                    package id
+                    gym id
+                    purchased price
+                    purchased no. of sessions
+

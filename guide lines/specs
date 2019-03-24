@@ -1,0 +1,37 @@
+Roles
+    Admin
+    has access to everything in the system
+    can see all links
+    can perform all actions
+    one seeded admin    admin@admin.com     123456
+    can change the price of the training package or no. of sessions per package
+    when buying a package for a user, a gym must be choosen
+
+    what to see in navigation menu:
+                                    Gym Managers​
+                                    City Managers
+                                    Users​
+                                    Cities
+                                    Gyms
+                                    Training Packages
+                                    Coaches
+                                    Attendance
+                                    Buy Package For User
+                                    Revenue
+*******************************************************************
+    City Manager
+    can see all gyms in his city
+    crud on gym managers
+    when buying a package for a user, a gym must be choosen
+*******************************************************************
+    Gym Manager
+    can create training sessions
+    can assign coach to sessions
+    buy training sessions for users
+    crud on training sessions
+*******************************************************************
+links:
+    Ban         https://github.com/cybercog/laravel-ban
+    Datatables  https://datatables.net/                             frontend
+                https://github.com/yajra/laravel-datatables         backend
+    
