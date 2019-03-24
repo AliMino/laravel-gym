@@ -15,11 +15,8 @@ class EditController extends Controller
         ]);
     }
 
-    public function update(UpdateGymRequest $request, $gym){
-        $gym=Gym::Findorfail($gym);
-        $gym->name=$request->name;
-        //$gym->city_id=$request->city_id;
-        $gym->gym_manager_id=$request->gym_manager_id;
+    public function update(UpdateGymRequest $request,Gym $gym){
+        $gym->update($request->all());
         $gym->save();
         return redirect()->route("gyms.index");
 
