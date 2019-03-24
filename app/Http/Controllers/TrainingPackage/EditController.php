@@ -15,10 +15,8 @@ class EditController extends Controller
         ]);
     }
 
-    public function update(UpdateTrainingPackageRequest $request,$package){
-        $package=TrainingPackage::Findorfail($package);
-        $package->no_of_sessions=$request->no_of_sessions;
-        $package->price_cent=$request->price_cent;
+    public function update(UpdateTrainingPackageRequest $request,TrainingPackage $package){
+        $package->update($request->all());
         $package->save();
         return redirect()->route("packages.index");
     }

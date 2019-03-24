@@ -13,7 +13,7 @@
     <form action="{{route('packages.store')}}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Package Name</label>
+            <label for="name">Package ID</label>
             <input name="name" type="text" class="form-control" id="name"  placeholder="Enter Package Name">
         </div>
         <div class="form-group">

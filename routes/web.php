@@ -13,7 +13,8 @@
 
 Route::get('/', function () {
     return view('welcome');
-    // added by ali kamel fro testing purposes
+    // added by ali kamel for testing & demo purposes
+    // demo of charts
     // return view('users.index');
 });
 
@@ -57,7 +58,9 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 Route::resource('coaches','Coach\CoachController');
 Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
-
+// cities
+Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
+Route::post('/cities','CitiesController@store')->name('cities.store');
 
 
 

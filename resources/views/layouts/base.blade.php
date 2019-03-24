@@ -95,7 +95,6 @@
                 @if(auth()->user() && auth()->user()->can('manage gym managers'))
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i>
                         <span>Gym Managers</span>
                     </a>
                 </li>
@@ -104,7 +103,6 @@
                 @if(auth()->user() && auth()->user()->can('manage city managers'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-files-o"></i>
                         <span>​City Managers</span>
                     </a>
 
@@ -114,16 +112,14 @@
                 @if(auth()->user() && auth()->user()->can('manage users'))
                 <li>
                     <a href="/users">
-                        <i class="fa fa-th"></i>
                         <span>Users</span>
                     </a>
                 </li>
                 @endif
 
                 @if(auth()->user() && auth()->user()->can('manage cities'))
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-pie-chart"></i>
+                <li>
+                    <a href="/cities/create">
                         <span>Cities</span>
                     </a>
                 </li>
@@ -132,7 +128,6 @@
                 @if(auth()->user() && auth()->user()->can('manage gyms'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-laptop"></i>
                         <span>Gyms</span>
                     </a>
                 </li>
@@ -141,7 +136,6 @@
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i>
                         <span>Training Packages</span>
                     </a>
                 </li>
@@ -150,7 +144,6 @@
                 @if(auth()->user() && auth()->user()->can('manage coaches'))
                     <li>
                         <a href="{{route('coaches.index')}}">
-                        <i class="fa fa-table"></i>
                             <span>Coaches</span>
                         </a>
                     </li>
@@ -159,7 +152,6 @@
                 @if(auth()->user() && auth()->user()->can('manage attendance'))
                 <li>
                     <a href="pages/calendar.html">
-                        <i class="fa fa-calendar"></i>
                         <span>Attendance</span>
                     </a>
                 </li>
@@ -168,7 +160,6 @@
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li>
                     <a href="{{route('payment.create')}}">
-                        <i class="fa fa-envelope"></i>
                         <span>BuyPackage</span>
                     </a>
                 </li>
@@ -177,7 +168,6 @@
                 @if(auth()->user() && auth()->user()->can('manage revenue'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-folder"></i>
                         <span>Revenue</span>
                     </a>
                 </li>
