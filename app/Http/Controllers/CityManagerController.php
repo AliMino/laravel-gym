@@ -18,11 +18,8 @@ class CityManagerController extends Controller
      */
     public function index()
     {
-        return view('cityManagers.index',[
-            'citymanagers'=>User::role('city manager')->get(),
-        ]);
-        /* $citymanagers=User::role('city manager')->get();
-        dd($citymanagers) ; */
+        return view('cityManagers.index');
+
     }
 
     /**
@@ -106,5 +103,9 @@ class CityManagerController extends Controller
         $user->delete();
 
         return redirect()->route('cityManagers.index');
+    }
+
+    public function getdata(){
+        return datatables()->of(User::role('city manager')->get())->toJson();
     }
 }

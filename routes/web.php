@@ -39,6 +39,7 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 
 // Coaches
 Route::resource('coaches','Coach\CoachController');
+Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
 //City Manager
 Route::get('/citymanagers','CityManagerController@index')->name('citymanagers.index');
@@ -48,5 +49,7 @@ Route::get('/citymanagers/{manager}','CityManagerController@show')->name('cityma
 Route::get('/citymanagers/{manager}/edit','CityManagerController@edit')->name('citymanagers.edit');
 Route::put('/citymanagers/{manager}','CityManagerController@update')->name('citymanagers.update');
 Route::delete('/citymanagers/{manager}','CityManagerController@destroy')->name('citymanagers.destroy');
-Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
+Route::get('/citymanagersdata', 'CityManagerController@getdata')->name('citymanagers.data');
+
+
 
