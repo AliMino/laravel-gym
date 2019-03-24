@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\RegisterAuthRequest;
 use App\Member;
+use App\Notifications\MailNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,8 @@ class AuthController extends Controller
         $member->save();
 
         $member->sendEmailVerificationNotification();
+
+        $member->notify(new MailNotification());
 
 
         return $this->login($request);
@@ -52,7 +55,7 @@ class AuthController extends Controller
             'token' => $jwt_token,
         ]);
     }
-    
+
     public function logout(Request $request)
     {
 
