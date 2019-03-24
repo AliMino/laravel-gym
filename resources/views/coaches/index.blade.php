@@ -15,12 +15,6 @@
             <th>Delete</th>
         </tr>
     </thead>
-    {{-- <tfoot>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-    </tfoot> --}}
 </table>
 
 @endsection
