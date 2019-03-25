@@ -10,4 +10,16 @@ class TrainingPackage extends Model
         'no_of_sessions',
         'price_cent',
     ];
+
+    public function gyms(){
+        return $this->belongsTo('App\Gym','id','id');
+    }
+
+    public function getPackagePriceAttribute($cents){
+        $dollars = $cents / 100;
+        return $dollars;
+    }
+    public function setPackagePriceAttribute($dollars){
+        $this->attributes['price_cents'] = $dollars * 100 ;
+    }
 }
