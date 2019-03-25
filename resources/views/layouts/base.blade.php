@@ -38,14 +38,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<!-- Google Font -->
+    <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    @yield('styles')
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-        
+
 <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
@@ -95,7 +96,6 @@
                 @if(auth()->user() && auth()->user()->can('manage gym managers'))
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i>
                         <span>Gym Managers</span>
                     </a>
                 </li>
@@ -114,16 +114,14 @@
                 @if(auth()->user() && auth()->user()->can('manage users'))
                 <li>
                     <a href="/users">
-                        <i class="fa fa-th"></i>
                         <span>Users</span>
                     </a>
                 </li>
                 @endif
 
                 @if(auth()->user() && auth()->user()->can('manage cities'))
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-pie-chart"></i>
+                <li>
+                    <a href="/cities/create">
                         <span>Cities</span>
                     </a>
                 </li>
@@ -132,7 +130,6 @@
                 @if(auth()->user() && auth()->user()->can('manage gyms'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-laptop"></i>
                         <span>Gyms</span>
                     </a>
                 </li>
@@ -141,25 +138,22 @@
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i>
                         <span>Training Packages</span>
                     </a>
                 </li>
                 @endif
 
                 @if(auth()->user() && auth()->user()->can('manage coaches'))
-                <li class="treeview">
-                    <a href="{{route('coaches.index')}}">
-                        <i class="fa fa-table"></i>
-                        <span>Coaches</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{route('coaches.index')}}">
+                            <span>Coaches</span>
+                        </a>
+                    </li>
                 @endif
 
                 @if(auth()->user() && auth()->user()->can('manage attendance'))
                 <li>
                     <a href="pages/calendar.html">
-                        <i class="fa fa-calendar"></i>
                         <span>Attendance</span>
                     </a>
                 </li>
@@ -167,8 +161,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li>
-                    <a href="pages/mailbox/mailbox.html">
-                        <i class="fa fa-envelope"></i>
+                    <a href="{{route('payment.create')}}">
                         <span>BuyPackage</span>
                     </a>
                 </li>
@@ -177,7 +170,6 @@
                 @if(auth()->user() && auth()->user()->can('manage revenue'))
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-folder"></i>
                         <span>Revenue</span>
                     </a>
                 </li>
@@ -200,7 +192,7 @@
 
 </div>
         <!-- ./wrapper -->
-        
+
         <!-- jQuery 3 -->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
         <!-- jQuery UI 1.11.4 -->
@@ -242,7 +234,7 @@
         <!-- DataTables -->
         <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-        
+
         <div class="content-wrapper">
             <!-- content -->
             <div>

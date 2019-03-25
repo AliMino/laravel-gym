@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Payment;
 
 use Illuminate\Foundation\Http\FormRequest;
-
-class UpdateTrainingPackageRequest extends FormRequest
+class StorePaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +22,17 @@ class UpdateTrainingPackageRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'id'=>"required",
-            'price_cent'=>"required|numeric|min:1",
-            'no_of_sessions'=>"required|numeric|min:1",
+        return  [
+            'card_no' => 'required',
+            'expiry_month' => 'required',
+            'expiry_year' => 'required',
+            'cvv' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return[
+
         ];
     }
 }

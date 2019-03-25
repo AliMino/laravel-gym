@@ -17,8 +17,8 @@ class CreateTrainingSessionsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
-            $table->date('start_at');
-            $table->date('end_at');
+            $table->dateTime('start_at');
+            $table->dateTime('end_at');
             $table->unsignedBigInteger('gym_id');
             $table->foreign('gym_id')->references('id')->on('gyms');
 //            $table->unsignedBigInteger('package_id')->default(0);

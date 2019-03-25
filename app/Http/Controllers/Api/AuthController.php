@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\RegisterAuthRequest;
 use App\Member;
+use App\Notifications\MailNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -19,13 +20,18 @@ class AuthController extends Controller
         $member->name = $request->name;
         $member->email = $request->email;
         $member->gender=$request->gender;
+        $member->profile_img=$request->profile_img;
+        $member->date_of_birth=$request->date_of_birth;
         $member->password = bcrypt($request->password);
         $member->save();
 
-        return response()->json([
-            'success' => true,
-            'data' => $member
-        ], 200);
+        $member->sendEmailVerificationNotification();
+
+        $member->notify(new MailNotification());
+
+
+        return $this->login($request);
+
     }
 
     public function login(Request $request)
@@ -47,6 +53,18 @@ class AuthController extends Controller
             'success' => true,
             'data'=>$currentuser,
             'token' => $jwt_token,
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+
+        $token = JWTAuth::getToken();
+
+        JWTAuth::invalidate($token);
+        return response()->json([
+            'success' => true,
+            'message' => 'User logged out successfully'
         ]);
     }
 }

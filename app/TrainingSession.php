@@ -11,7 +11,7 @@ class TrainingSession extends Model
         'start_at',
         'end_at',
         'gym_id',
-        'package_id',
+
     ];
 
 //    public function TrainingPackage() {

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCityIdToUsers extends Migration
+class AddCountryIdToCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCityIdToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('city_id')->nullable();
+        Schema::table('cities', function (Blueprint $table) {
+            $table->unsignedBigInteger('country_id');
         });
     }
 
@@ -25,7 +25,7 @@ class AddCityIdToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('cities', function (Blueprint $table) {
             //
         });
     }

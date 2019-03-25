@@ -11,7 +11,7 @@ class StoreController extends Controller
 {
     public function store(StoreGymRequest $request) {
         Gym::create(request()->all());
-        return redirect()->route('index');
+        return redirect()->route('gyms.index');
     }
 
     public function index(){

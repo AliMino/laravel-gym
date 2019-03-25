@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return view('users.index');
-    // return redirect('/home');
+    return view('welcome');
+    // added by ali kamel for testing & demo purposes
+    // demo of charts
+    // return view('users.index');
 });
 
 Auth::routes();
@@ -45,6 +46,10 @@ Route::delete('/packages/{package}','TrainingPackage\DeleteController@destroy')-
 // training sessions
 Route::get('/sessions/create', 'TrainingSession\CreateController@create')->name('sessions.create');
 Route::post('/sessions','TrainingSession\StoreController@store')->name('sessions.store');
+Route::get('/sessions','TrainingSession\TrainingSessionController@index')->name('sessions.index');
+Route::get('sessionsdata', 'TrainingSession\TrainingSessionController@getdata')->name('sessions.data');
+
+
 
 // users
 Route::get('/users', 'UsersController@index')->name('users.index');
@@ -52,6 +57,36 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 // Coaches
 Route::resource('coaches','Coach\CoachController');
 Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
+
+// cities
+Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
+Route::post('/cities','CitiesController@store')->name('cities.store');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// buying packages
+Route::get('/payments/create', 'Payment\PaymentController@create')->name('payment.create');
+Route::post('/payments', 'Payment\PaymentController@store')->name('payment.store');
+
+
 
 //City Manager
 Route::get('/citymanagers','CityManagerController@index')->name('citymanagers.index');
