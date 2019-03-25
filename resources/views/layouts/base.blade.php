@@ -232,6 +232,16 @@
         <!-- DataTables -->
         <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <!-- InputMask -->
+            <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+            <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+            <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+            <script src={{asset('bower_components/select2/dist/js/select2.full.min.js')}}></script>
+
+
+
+
 
         <div class="content-wrapper">
             <!-- content -->

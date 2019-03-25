@@ -12,15 +12,26 @@
 
         <div class="form-group">
             <label for="exampleInputPassword1">Session Start</label>
-            <br>
-            <h1>date picker here</h1>
+                    <br>
+                            <label for="exampleInputPassword1">Date</label>
+                                {!! Form::date('start-date', \Carbon\Carbon::now()) !!}
+                            <label for="exampleInputPassword1">Time</label>
+                                {!!  Form::time('start-time', Carbon\Carbon::now()) !!}
+
         </div>
 
         <div class="form-group">
             <label for="exampleInputPassword1">Session end</label>
-            <br>
-            <h1>date picker here</h1>
+                    <br>
+                            <label for="exampleInputPassword1">Date</label>
+                                {!! Form::date('end-date', \Carbon\Carbon::now()) !!}
+                            <label for="exampleInputPassword1">Time</label>
+                                {!!  Form::time('end-time', Carbon\Carbon::now()) !!}
+
         </div>
+
+
+
 
         <div class="form-group">
             <label for="exampleInputPassword1">Gym</label>
@@ -33,16 +44,41 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputPassword1">Training Package(price)</label>
-            <select class="form-control" name="package_id">
-                @foreach($packages as $package)
-                    <option value="{{$package->id}}">{{$package->price_cent}}</option>
-                @endforeach
-            </select>
-        </div>
+                <label for="exampleInputPassword1">Coaches</label>
+                {!! Form::select('coaches[]', $coaches, null, ['multiple' => true, 'class' => 'form-control']) !!}
+            </div>
+
+
+
+
+
+
 
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
+
+@endsection
+
+
+@section('scripts')
+<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<script>
+ $(document).ready( function () {
+    $(function () {
+          //Initialize Select2 Elements
+          $('.select2').select2()
+
+            });
+
+            $(function () {
+                            $('#datetimepicker2').datetimepicker({
+                                locale: 'ru'
+                            });
+                        });
+
+
+    } );
+      </script>
 
 @endsection

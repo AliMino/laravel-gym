@@ -9,10 +9,7 @@ use App\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
-    public function store() {
-        echo('store training session');
-        $request = request();
-        // dd(request()->package_id);
+    public function store(Request $request) {
         $package = TrainingPackage::where('id', '=', request()->package_id)->first();
         $request->name = "pkg" . $package->price_cent . "_" . $package->no_of_sessions;
         TrainingSession::create([

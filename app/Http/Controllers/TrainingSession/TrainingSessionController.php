@@ -20,7 +20,11 @@ class TrainingSessionController extends Controller
     }
 
 
+
     public function getdata() {
         return datatables()->of(TrainingSession::all())->toJson();
     }
+
+
+
 }
