@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use App\City;
+use App\Http\Requests\Requests\StoreManagerRequest;
 
 
 class CityManagerController extends Controller
@@ -40,7 +41,7 @@ class CityManagerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreManagerRequest $request)
     {
         User::create($request->all());
         return redirect()->route('cityManagers.index');

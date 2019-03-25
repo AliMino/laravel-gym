@@ -103,7 +103,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage city managers'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('citymanagers.index')}}">
                         <i class="fa fa-files-o"></i>
                         <span>​City Managers</span>
                     </a>
