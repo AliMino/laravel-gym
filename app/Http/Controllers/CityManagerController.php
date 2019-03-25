@@ -43,8 +43,11 @@ class CityManagerController extends Controller
      */
     public function store(StoreManagerRequest $request)
     {
-        User::create($request->all());
-        return redirect()->route('cityManagers.index');
+        //dd($request->city_id);
+        $user=User::create($request->all());
+        $user->assignRole('city manager');
+
+        return redirect()->route('citymanagers.index');
     }
 
     /**

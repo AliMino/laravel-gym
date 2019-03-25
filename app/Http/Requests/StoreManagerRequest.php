@@ -28,7 +28,7 @@ class StoreManagerRequest extends FormRequest
             'email'=>'required|unique:users|email',
             'password'=>'required|min:6',
             'national_id'=>'required|unique:users',
-            'image'=>'mimes:jpg,jpeg',
+            //'image'=>'mimes:jpg,jpeg',
             'city_id'=>'required|exists:cities,id'
         ];
     }
