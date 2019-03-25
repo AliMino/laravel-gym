@@ -19,7 +19,8 @@
         "stripe/stripe-php": "^6.31",
         "tymon/jwt-auth": "dev-develop",
         "yajra/laravel-datatables-oracle": "~9.0",
-        "webpatser/laravel-countries": "dev-master"
+        "webpatser/laravel-countries": "dev-master",
+        "laravelcollective/html": "~5.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
