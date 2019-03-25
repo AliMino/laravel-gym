@@ -31,8 +31,9 @@ Route::post('/gyms','Gym\StoreController@store')->name('gyms.store');
 Route::get('/gyms/{gym}/edit','Gym\EditController@edit')->name('gyms.edit');
 Route::put('/gyms/{gym}','Gym\EditController@update')->name('gyms.update');
 Route::delete('/gyms/{gym}','Gym\DeleteController@destroy')->name('gyms.destroy');
-/* Route::resource('gyms','Gym\StoreController');
-Route::get('gymdata', 'Gym\StoreController@getdata')->name('gym.data'); */
+Route::get('/data_gyms', 'Gym\StoreController@data_gyms');
+//Route::get('/image', 'Gym\CreateController@upload')->name('image.upload');
+
 
 // training package
 Route::get('/packages','TrainingPackage\StoreController@index')->name('packages.index');
@@ -41,6 +42,7 @@ Route::post('/packages','TrainingPackage\StoreController@store')->name('packages
 Route::get('/packages/{package}/edit','TrainingPackage\EditController@edit')->name('packages.edit');
 Route::put('/packages/{package}','TrainingPackage\EditController@update')->name('packages.update');
 Route::delete('/packages/{package}','TrainingPackage\DeleteController@destroy')->name('packages.destroy');
+Route::get('/data_packages', 'TrainingPackage\StoreController@data_packages');
 
 
 // training sessions
