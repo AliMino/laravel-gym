@@ -32,7 +32,6 @@ Route::get('/gyms/{gym}/edit','Gym\EditController@edit')->name('gyms.edit');
 Route::put('/gyms/{gym}','Gym\EditController@update')->name('gyms.update');
 Route::delete('/gyms/{gym}','Gym\DeleteController@destroy')->name('gyms.destroy');
 Route::get('/data_gyms', 'Gym\StoreController@data_gyms');
-//Route::get('/image', 'Gym\CreateController@upload')->name('image.upload');
 
 
 // training package
@@ -56,6 +55,7 @@ Route::get('sessionsdata', 'TrainingSession\TrainingSessionController@getdata')-
 // users
 Route::get('/users', 'UsersController@index')->name('users.index');
 
+
 // Coaches
 Route::resource('coaches','Coach\CoachController');
 Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
@@ -63,6 +63,14 @@ Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 // cities
 Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
 Route::post('/cities','CitiesController@store')->name('cities.store');
+
+//attendance
+Route::get('/attendance','Attendance\AttendanceController@index')->name('attendance.index');
+Route::get('/data_attend', 'Attendance\AttendanceController@data_attend');
+
+//members
+Route::get('/members','Member\MembersController@index')->name('members.index');
+Route::get('/data_member','Member\MembersController@data_member');
 
 
 
