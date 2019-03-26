@@ -13,7 +13,9 @@ class CitiesController extends Controller
         // use this instead
         // all countries are 25 with max id of 76
         return view('cities.create', [
-            'countries' => Country::where('id', '<', 77)->get()
+            'countries' => Country::where('id', '<', 77)->get(),
+            'last_selected_country' => Country::where('id', '=', 4)->first(),
+            'cities' => City::where('country_id', '=', 4)->get()
         ]);
     }
     public function store() {
@@ -21,7 +23,9 @@ class CitiesController extends Controller
             City::create(request()->all());
         }
         return view('cities.create', [
-            'countries' => Country::where('id', '<', 77)->get()
+            'countries' => Country::where('id', '<', 77)->get(),
+            'last_selected_country' => Country::where('id', '=', request()->country_id)->first(),
+            'cities' => City::where('country_id', '=', request()->country_id)->get()
         ]);
     }
 }

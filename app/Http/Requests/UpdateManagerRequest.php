@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreManagerRequest extends FormRequest
+class UpdateManagerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreManagerRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,12 +25,10 @@ class StoreManagerRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'email'=>'required|unique:users|email',
-            'password'=>'required|min:6',
-            'national_id'=>'required|unique:users',
+            'email'=>'required|email|unique:users,email,' . $this->user->email,
+            'national_id'=>'required|unique:users,national_id,' . $this->user->id,
             'image'=>'mimes:jpg,jpeg',
             'city_id'=>'required|exists:cities,id'
         ];
     }
-
 }

@@ -56,17 +56,17 @@
                 { "data": "city_id" },
                 {
                     mRender: function (data, type, row) {
-                        return '<center><a href="" class="btn btn-info"><i class="glyphicon glyphicon-chevron-right"></i></a></center>'
+                        return '<center><a href="/citymanagers/'+row.id+'"  class="btn btn-info"><i class="glyphicon glyphicon-chevron-right"></i></a></center>'
                     }
                 },
                 {
                     mRender: function (data, type, row) {
-                        return '<center><a href="" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></a></center>'
+                        return '<center><a href="/citymanagers/'+row.id+'/edit"  class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></a></center>'
                     }
                 },
                 {
                     mRender: function (data, type, row) {
-                        return '<center><a href="" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></center>'
+                        return '<center><a href="/'+row.id+'"  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></center>'
                     }
                 },
             ],

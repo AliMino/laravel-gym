@@ -6,12 +6,12 @@ use App\TrainingPackage;
 use App\TrainingSession;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class StoreController extends Controller
 {
     public function store(Request $request) {
-        $package = TrainingPackage::where('id', '=', request()->package_id)->first();
-        $request->name = "pkg" . $package->price_cent . "_" . $package->no_of_sessions;
+        dd($request);
         TrainingSession::create([
             'name' => $request->name,
             'start_at' => now(),

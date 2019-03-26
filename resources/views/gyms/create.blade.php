@@ -35,7 +35,11 @@
                 @endforeach
             </select>
         </div>
-
+        <div>
+        <label for="exampleInputImage1">Cover Photo</label>
+           <?php             
+ echo Form::file('img');?>
+</div>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

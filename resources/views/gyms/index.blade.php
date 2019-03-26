@@ -7,17 +7,17 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Gyms Table</h3><br>
-                    <a href='/gyms/create' style="margin-top: 10px;" class="btn btn-success">Add New Gym</a>
+                    <a href="{{route('gyms.create')}}" style="margin-top: 10px;" class="btn btn-success">Add New Gym</a>
                 </div>
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped">
   <thead>
     <tr>
       <th scope="col">Name</th>
+      <th scope="col">City ID</th>
+      <th scope="col">Gym Manager ID</th>
       <th scope="col">Created at</th>
-      <th scope="col">Cover Photo</th>     
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Cover Photo</th>          
     </tr>
   </thead>
 </table>
@@ -64,32 +64,22 @@
                 },
                 url: '/data_gyms',
                 dataType : 'json',
-                type: 'get',
-                // processData: false,
-                // contentType: false,
-
-                // success:function(response) {
-                //
-                //     console.log(response);
-                // },
-                // error: function (response) {
-                //     alert(' Cant Save This Documents !');
-                //     console.log(response);
-                // }
+                type: 'get',            
             },
             columns: [
-                { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },                
+                { data: 'name', name: 'name' },                                               
                 { data: 'city_id', name: 'city_id' },
                 { data: 'gym_manager_id', name: 'gym_manager_id'},
                 { data: 'created_at', name: 'created_at' },
-                { data: 'image', name: 'image' },
-
-                /* Show */ {
+                /* { data: 'image', name: 'image' }, */
+                //image
+                {
                     mRender: function (data, type, row) {
-                        return '<a href="/gyms/'+row.id+'" class="table-delete btn btn-info" data-id="' + row.id + '">Show</a>'
+                        return '<img src="'+row.image+'" height="50" width="100">'
                     }
                 },
+
+                /* Show */ 
                 /* EDIT */ {
                     mRender: function (data, type, row) {
                         return '<a href="/gyms/'+row.id+'/edit" class="table-edit btn btn-warning" data-id="' + row.id + '">EDIT</a>'

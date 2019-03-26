@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "b7e9360a2ae6e56a82984a235ae78a64",
@@ -2407,16 +2407,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.31.1",
+            "version": "v6.31.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "dcdeb5f44890a146f572ecd33f73b144f902b82a"
+                "reference": "19456bcbdde319a4e936e042f65769f0993eb90b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/dcdeb5f44890a146f572ecd33f73b144f902b82a",
-                "reference": "dcdeb5f44890a146f572ecd33f73b144f902b82a",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/19456bcbdde319a4e936e042f65769f0993eb90b",
+                "reference": "19456bcbdde319a4e936e042f65769f0993eb90b",
                 "shasum": ""
             },
             "require": {
@@ -2459,7 +2459,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2019-03-22T17:12:41+00:00"
+            "time": "2019-03-25T20:28:43+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3073,7 +3073,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",

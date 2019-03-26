@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
         //Managers
-        'national_id','image',
+        'national_id','avatar_img',
     ];
 
     /**
@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function city()
     {
-        return $this->belongsTo(City,'city_id');
+        return $this->belongsTo(City::class);
     }
 
     public function getRole() {

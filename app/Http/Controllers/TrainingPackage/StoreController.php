@@ -23,7 +23,7 @@ class StoreController extends Controller
      * @return packagesTable(JSON)
      */
 
-    public function get_table(){
+    public function data_packages(){
         return datatables()->of(TrainingPackage::with('gyms'))->toJson();
     }
     

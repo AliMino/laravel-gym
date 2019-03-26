@@ -33,6 +33,8 @@
 
 
 
+
+
         <div class="form-group">
             <label for="exampleInputPassword1">Gym</label>
 
@@ -45,10 +47,8 @@
 
         <div class="form-group">
                 <label for="exampleInputPassword1">Coaches</label>
-                {!! Form::select('coaches[]', $coaches, null, ['multiple' => true, 'class' => 'form-control']) !!}
+                {!! Form::select('coaches[]', $coaches , null, ['multiple' => true, 'class' => 'form-control']) !!}
             </div>
-
-
 
 
 
@@ -62,23 +62,11 @@
 
 
 @section('scripts')
-<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+
 <script>
  $(document).ready( function () {
-    $(function () {
-          //Initialize Select2 Elements
-          $('.select2').select2()
 
-            });
-
-            $(function () {
-                            $('#datetimepicker2').datetimepicker({
-                                locale: 'ru'
-                            });
-                        });
-
-
-    } );
+ });
       </script>
 
 @endsection

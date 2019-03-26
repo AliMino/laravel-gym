@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TrainingPackage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\TrainingPackage;
+use App\Http\Requests\UpdateTrainingPackageRequest;
 
 
 class EditController extends Controller

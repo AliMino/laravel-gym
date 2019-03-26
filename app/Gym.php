@@ -10,6 +10,7 @@ class Gym extends Model
         'name',
         'city_id',
         'gym_manager_id',
+        'image',
     ];
 
     public function city()
