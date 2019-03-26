@@ -15,9 +15,8 @@ class CreatePurchasedPackagesTable extends Migration
     {
         Schema::create('purchased_packages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
+            $table->unsignedBigInteger('member_id');
+            $table->foreign('member_id')->references('id')->on('members');
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('training_packages');
             $table->integer('paid_price');

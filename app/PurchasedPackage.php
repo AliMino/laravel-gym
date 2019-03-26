@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PurchasedPackage extends Model
 {
     protected $fillable=[
-        'user_id',
+        'member_id',
         'package_id',
         'paid_price',
         'num_of_sessions',
@@ -16,15 +16,16 @@ class PurchasedPackage extends Model
 
     ];
 
-    public function user()
+    public function member()
     {
-        return $this->belongsTo(User,'user_id');
+        return $this->belongsTo(Member,'member_id');
     }
 
     public function trainingpackage()
     {
-        return $this->belongsTo(TrainingPackage,'package_id');
+        return $this->belongsTo('App/TrainingPackage','package_id');
     }
+
 
     public function gym()
     {

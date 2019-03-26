@@ -22,9 +22,12 @@ Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
 
 
+
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'Api\AuthController@logout');
     Route::put('member/{member}', 'Api\MemberController@update');
+    Route::get('sessions/', 'Api\TrainingsessionController@ShowRemainingSessions');
 
 });
 

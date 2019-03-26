@@ -15,6 +15,7 @@ class CreateTrainingPackagesTable extends Migration
     {
         Schema::create('training_packages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
             $table->unsignedBigInteger('no_of_sessions');
             $table->unsignedBigInteger('price_cent');
