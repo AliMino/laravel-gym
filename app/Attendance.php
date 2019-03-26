@@ -10,20 +10,11 @@ class Attendance extends Model
 
     protected $fillable = ["member_id","session_id","attendance_date","attendance_time"];
 
-    public function session()
-    {
-        return $this->belongsTo('App\TrainingSession');
-    }
     public function member()
     {
-        return $this->belongsTo('App\Member');
+        return $this->belongsTo('App\Member','member_id');
     }
-
-    public function gym(){
-        return $this->belongsTo('App\Gym');
-    }
-
-    public function city(){
-        return $this->belongsTo('App\City');
+    public function session(){
+        return $this->belongsTo('App\TrainingSession','session_id');
     }
 }

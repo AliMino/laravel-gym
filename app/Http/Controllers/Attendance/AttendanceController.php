@@ -16,6 +16,6 @@ class AttendanceController extends Controller
     }
 
     public function data_attend(){
-        return datatables()->of(Attendance::with('member','session','gym','city'))->toJson();
+        return datatables()->of(Attendance::with('member','session'))->toJson();
             }
 }
