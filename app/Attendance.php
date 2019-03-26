@@ -12,10 +12,10 @@ class Attendance extends Model
 
     public function session()
     {
-        return $this->belongsTo(TrainingSession,'session_id');
+        return $this->belongsTo('App\TrainingSession','session_id');
     }
     public function member()
     {
-        return $this->belongsTo(Member,'member_id');
+        return $this->belongsTo('App\Member','member_id');
     }
 }

@@ -20,8 +20,6 @@ class CreatePurchasedPackagesTable extends Migration
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('training_packages');
             $table->integer('paid_price');
-            $table->integer('num_of_sessions');
-            $table->integer('attended_sessions');
             $table->unsignedBigInteger('gym_id');
             $table->foreign('gym_id')->references('id')->on('gyms');
 
