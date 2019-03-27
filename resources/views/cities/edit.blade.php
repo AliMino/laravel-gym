@@ -24,25 +24,22 @@
                             </ul>
                         </div>
                     @endif
-                    
-                    <label>Select Country</label>
-                    <select class="form-control select2" style="width: 100%;" name="country_id" id="country_list">
-                        @foreach($countries as $country)
-                            @if($country->id == $last_selected_country->id)    
-                                <option value={{$country->id}} selected>{{$country->name}} - {{$country->full_name}}</option>
-                            @else
-                                <option value={{$country->id}}>{{$country->name}} - {{$country->full_name}}</option>
-                            @endif
-                        @endforeach
-                    </select>
                 </div>
             
                 <div>
-                    <label>City name</label>
-                    <input type="text" class="form-control" placeholder="enter city name" name="name">
+                    <label>Old name: {{$city->name}}</label>
+                    <br>
+                    <label>New name</label>
+                    <input type="text" class="form-control" name="name" value="{{$city->name}}">
                 </div>
                 <br>
-                <button type="submit" class="btn btn-danger">Add city</button>
+                <form action="{{route('cities.update', 1)}}" method="post">
+                    <!-- @csrf -->
+                    {{ csrf_field()}}
+                    <input name="_method" type="hidden" value="PUT">
+                    <input name="_token" type="hidden" value="{{csrf_token()}}">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
             </form>
         </div>
     
@@ -50,7 +47,9 @@
 @else
     <div style="margin-left:30%;margin-top:20px;">
         <h2>You don't have the premission to manage cities</h2>
-        <a href="{{url('login')}}">click here to login</a>
+        <a href="{{url('login')}}">
+            <button class="btn btn-primary">click here to login</button>
+        </a>
     </div>
 @endif
 

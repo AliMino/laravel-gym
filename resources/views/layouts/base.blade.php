@@ -112,16 +112,7 @@
 
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-
-                @if(auth()->user() && auth()->user()->can('manage gym managers'))
-                <li class="active treeview">
-                    <a href="#">
-                        <i class="fas fa-user-secret"></i>
-                        <span>Gym Managers</span>
-                    </a>
-                </li>
-                @endif
-
+                
                 @if(auth()->user() && auth()->user()->can('manage city managers'))
                 <li class="treeview">
                     <a href="{{route('citymanagers.index')}}">
@@ -129,6 +120,15 @@
                         <span>​City Managers</span>
                     </a>
 
+                </li>
+                @endif
+
+                @if(auth()->user() && auth()->user()->can('manage gym managers'))
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fas fa-user-secret"></i>
+                        <span>Gym Managers</span>
+                    </a>
                 </li>
                 @endif
 
@@ -143,7 +143,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage cities'))
                 <li>
-                    <a href="{{route('cities.create')}}">
+                    <a href="{{route('cities.index')}}">
                         <i class="fas fa-city"></i>
                         <span>Cities</span>
                     </a>
