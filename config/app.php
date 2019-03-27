@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        'Collective\Html\HtmlServiceProvider',
 
 
 
@@ -232,6 +233,8 @@ return [
         'Countries' => 'Webpatser\Countries\CountriesFacade',
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
     ],
 
 ];

@@ -27,8 +27,8 @@ class UpdateManagerRequest extends FormRequest
             'name'=>'required',
             'email'=>'required|email|unique:users,email,' . $this->user->email,
             'national_id'=>'required|unique:users,national_id,' . $this->user->id,
-            'image'=>'mimes:jpg,jpeg',
-            'city_id'=>'required|exists:cities,id'
+            //'image'=>'image|mimes:jpg,jpeg',
+            //'city_id'=>'required|exists:cities,id'
         ];
     }
 }

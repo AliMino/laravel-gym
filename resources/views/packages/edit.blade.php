@@ -14,31 +14,19 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="name">Package Name</label>
-            <input name="name" type="text" class="form-control" id="name"  value={{$package->name}}>
+            <label for="id">Package ID</label>
+            <input name="id" type="text" class="form-control" id="id"  value="{{$package->id}}">
         </div>
         <div class="form-group">
-            <label for="number_of_sessions">No. Of sessions</label>
-            <input type="number" name="number_of_sessions" value="{{$package->number_of_sessions}}" class="form-control"></input>
+            <label for="no_of_sessions">No. Of sessions</label>
+            <input type="number" name="no_of_sessions" value="{{$package->no_of_sessions}}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="package_price">Package Price (usd) </label>
-            <input type="number" name="package_price" value="{{$package->package_price}}" id="package_price"></input>
+            <label for="price_cent">Package Price (usd) </label>
+            <input type="number" name="price_cent" value="{{$package->price_cent}}" id="price_cent">
 
         </div>
-
-         <div class="form-group">
-            <label for="gym_id">Gym</label>
-            <select class="form-control" name="gym_id">
-                @foreach($gyms as $gym)
-                @if ($gym->id == $package->gym_id)
-                    <option value="{{$gym->id}}" selected>{{$gym->name}}</option>
-                    @else
-                    <option value="{{$gym->id}}">{{$gym->name}}</option>
-                    @endif
-                @endforeach
-            </select>
-        </div>
+        
 
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>

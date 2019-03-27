@@ -1,6 +1,17 @@
 @extends('layouts.base')
 @section('content')
-
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+<div>
+    <h2 for="Title">Add a Session</h2>
+</div>
 
     <form action="{{route('sessions.store')}}" method="POST">
         @csrf
@@ -11,16 +22,32 @@
         </div>
 
         <div class="form-group">
+            <label for="exampleInputPassword1">Session Date</label>
+                    <br>
+                            <label for="exampleInputPassword1">Date</label>
+                                {!! Form::date('start-date', \Carbon\Carbon::now()) !!}
+        </div>
+
+        <div class="form-group">
             <label for="exampleInputPassword1">Session Start</label>
-            <br>
-            <h1>date picker here</h1>
+                    <br>
+                            <label for="exampleInputPassword1">Time</label>
+                                {!!  Form::time('start-time', Carbon\Carbon::now()) !!}
+
         </div>
 
         <div class="form-group">
             <label for="exampleInputPassword1">Session end</label>
-            <br>
-            <h1>date picker here</h1>
+                    <br>
+                            <label for="exampleInputPassword1">Time</label>
+                                {!!  Form::time('end-time', Carbon\Carbon::now()) !!}
+
         </div>
+
+
+
+
+
 
         <div class="form-group">
             <label for="exampleInputPassword1">Gym</label>
@@ -32,17 +59,28 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputPassword1">Training Package(price)</label>
-            <select class="form-control" name="package_id">
-                @foreach($packages as $package)
-                    <option value="{{$package->id}}">{{$package->price_cent}}</option>
+            <div class="form-group">
+                <label>Select Coaches</label>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" name="coaches[]" data-placeholder="Select coaches" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    @foreach($coaches as $coach)
+                    <option value="{{$coach->id}}">{{$coach->name}}</option>
                 @endforeach
-            </select>
-        </div>
+                </select>
+            </div>
+
+
 
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
+
+@endsection
+
+
+@section('scripts')
+
+<script>
+    $('.select2').select2();
+      </script>
 
 @endsection

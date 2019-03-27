@@ -11,7 +11,7 @@
     </div>
 @endif
 
-    <form action="{{route('citymanagers.store')}}" method="POST">
+    <form action="{{route('gymmanagers.store')}}" method="POST">
         @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
@@ -40,10 +40,10 @@
 
 
         <div class="form-group">
-            <label for="exampleInputPassword1">City</label>
-            <select class="form-control" name="city_id">
-                @foreach($cities as $city)
-                    <option value="{{$city->id}}">{{$city->name}} - {{$city->fullName}}</option>
+            <label for="exampleInputPassword1">GYM</label>
+            <select class="form-control" name="gym_id">
+                @foreach($gyms as $gym)
+                    <option value="{{$gym->id}}">{{$gym->name}}</option>
                 @endforeach
             </select>
         </div>
