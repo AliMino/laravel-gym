@@ -7,29 +7,46 @@ use App\TrainingSession;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use App\Gym;
+use App\CoachesSession;
 use Spatie\Period\Period;
+use Illuminate\Support\MessageBag;
+use App\Gym;
+use App\Coach;
 class StoreController extends Controller
 {
     public function store(Request $request) {
+
+        $request->validate([
+            'name' => 'required',
+            'coaches' => 'required',
+        ]);
         if($this->validateTime($request))
         {
+            $coaches=$request->get('coaches');
             TrainingSession::create([
                 'name' => $request->name,
-                'start_at' => now(),
-                'end_at' => now(),
+                'start_at' => $this->generateCarbon($request->get('start-date'),$request->get('start-time')),
+                'end_at' => $this->generateCarbon($request->get('start-date'),$request->get('end-time')),
                 'gym_id' => $request->gym_id]);
+
+            foreach($coaches as $coach){
+                CoachesSession::create([
+                    'session_id' =>TrainingSession::latest()->first()->id,
+                    'coach_id' => $coach]);
+            }
+            return redirect()->route('sessions.index');
+        }else{
+            $errors= new MessageBag();
+            $errors->add('overlap','this gym has a session that overlaps with your input');
+            return view('sessions.create',['gyms' => Gym::all(),'coaches' => Coach::all(),])->withErrors($errors);
         }
 
-        // return redirect()->route('home');
+
     }
     private function validateTime($request){
         $gym=$request->get('gym_id');
-        $startDate=$request->get('start-date');
-        $startTime=$request->get('start-time');
-        $endTime=$request->get('end-time');
-        $start=$this->generateCarbon($startDate,$startTime);
-        $end=$this->generateCarbon($startDate,$endTime);
+        $start=$this->generateCarbon($request->get('start-date'),$request->get('start-time'));
+        $end=$this->generateCarbon($request->get('start-date'),$request->get('end-time'));
         if($this->isOverlap($start,$end,$gym)){
             // return false if time is invalid
             return false;
