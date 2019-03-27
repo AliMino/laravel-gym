@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\TrainingSession;
 use App\Gym;
-use App\Coach;
+use App\CoachesSession;
 use App\Attendance;
 use Carbon\Carbon;
 use Spatie\Period\Period;
@@ -14,17 +14,15 @@ use Illuminate\Support\MessageBag;
 class TrainingSessionController extends Controller
 {
     public function index() {
+
        return view('sessions.index');
     }
-
-
-
     public function getdata() {
         return datatables()->of(TrainingSession::all())->toJson();
     }
 
     public function edit($id) {
-        if(count($attended=Attendance::where('session_id',$id)->get())>0){
+        if(count(Attendance::where('session_id',$id)->get())>0){
                 $errors= new MessageBag();
                 $errors->add('attendence','this session has people attending it');
                 return view('sessions.index')->withErrors($errors);
@@ -53,6 +51,27 @@ class TrainingSessionController extends Controller
 
 
     }
+
+    public function destroy($id) {
+
+        if(count(Attendance::where('session_id',$id)->get())>0){
+            return response()->json([
+                'error' => 'failed to delete'
+            ],400);
+        }else{
+            $sessions=CoachesSession::where('session_id',$id)->get();
+            foreach($sessions as $session){
+                $session->delete();
+            }
+            $session=TrainingSession::find($id);
+            $session->delete();
+            return response()->json([
+                'success' => 'Record deleted successfully!'
+            ]);
+        }
+    }
+
+
     private function validateTime($request,$id){ // session id
         $gym=TrainingSession::where('id',$id)->first()->gym_id;
         $start=$this->generateCarbon($request->get('start-date'),$request->get('start-time'));

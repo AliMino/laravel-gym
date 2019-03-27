@@ -51,6 +51,7 @@ Route::post('/sessions/{id}', 'TrainingSession\TrainingSessionController@update'
 Route::post('/sessions','TrainingSession\StoreController@store')->name('sessions.store');
 Route::get('/sessions','TrainingSession\TrainingSessionController@index')->name('sessions.index');
 Route::get('sessionsdata', 'TrainingSession\TrainingSessionController@getdata')->name('sessions.data');
+Route::delete('/sessions/{id}','TrainingSession\TrainingSessionController@destroy')->name('sessions.destroy');
 
 
 

@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>
@@ -24,6 +25,7 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <table id="session" class="table table-bordered table-hover">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
                   <thead>
                   <tr>
                     <th>Name</th>
@@ -72,13 +74,14 @@
                     }
                 },{
                     mRender: function (data, type, row) {
-                       return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger btn-flat"> Delete </button></a>'
+                       return '<a  href="#" class="delete" id="'+row.id+'" data-token="{{ csrf_token() }}"><buttontype="button" class="btn btn-block btn-danger btn-flat"> Delete </button></a>'
                     }
                 }
             ]
         } );
         $(document).on('click', '.delete', function(){
         var id = $(this).attr('id');
+        var token = $(this).data('token');
         if(confirm("Are you sure you want to Delete this session ?"))
         {
             $.ajax({
@@ -86,11 +89,20 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 url:"/sessions/"+id,
-                type:'DELETE',
+                type:"DELETE",
+                dataType: "JSON",
+                data: {
+                    "id": id,
+                    "_method": "DELETE",
+                    "_token": token,
+                },
                 success:function(data)
                 {
                     alert("session deleted successfully");
                     $('#session').DataTable().ajax.reload();
+                },
+                error:function(data){
+                    alert("Some members are attending this session");
                 }
             })
         }
