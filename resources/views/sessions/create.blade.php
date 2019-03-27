@@ -1,6 +1,14 @@
 @extends('layouts.base')
 @section('content')
-
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
     <form action="{{route('sessions.store')}}" method="POST">
         @csrf
@@ -11,10 +19,15 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputPassword1">Session Start</label>
+            <label for="exampleInputPassword1">Session Date</label>
                     <br>
                             <label for="exampleInputPassword1">Date</label>
                                 {!! Form::date('start-date', \Carbon\Carbon::now()) !!}
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Session Start</label>
+                    <br>
                             <label for="exampleInputPassword1">Time</label>
                                 {!!  Form::time('start-time', Carbon\Carbon::now()) !!}
 
@@ -23,8 +36,6 @@
         <div class="form-group">
             <label for="exampleInputPassword1">Session end</label>
                     <br>
-                            <label for="exampleInputPassword1">Date</label>
-                                {!! Form::date('end-date', \Carbon\Carbon::now()) !!}
                             <label for="exampleInputPassword1">Time</label>
                                 {!!  Form::time('end-time', Carbon\Carbon::now()) !!}
 
@@ -45,12 +56,14 @@
             </select>
         </div>
 
-        <div class="form-group">
-                <label for="exampleInputPassword1">Coaches</label>
-                {!! Form::select('coaches[]', $coaches , null, ['multiple' => true, 'class' => 'form-control']) !!}
+            <div class="form-group">
+                <label>Select Coaches</label>
+                <select class="form-control select2 select2-hidden-accessible" multiple="" name="coaches[]" data-placeholder="Select coaches" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    @foreach($coaches as $coach)
+                    <option value="{{$coach->id}}">{{$coach->name}}</option>
+                @endforeach
+                </select>
             </div>
-
-
 
 
 
@@ -64,9 +77,7 @@
 @section('scripts')
 
 <script>
- $(document).ready( function () {
-
- });
+    $('.select2').select2();
       </script>
 
 @endsection

@@ -70,16 +70,14 @@
                 { data: 'name', name: 'name' },                                               
                 { data: 'city_id', name: 'city_id' },
                 { data: 'gym_manager_id', name: 'gym_manager_id'},
-                { data: 'created_at', name: 'created_at' },
-                /* { data: 'image', name: 'image' }, */
+                { data: 'created_at', name: 'created_at' },                
                 //image
                 {
                     mRender: function (data, type, row) {
                         return '<img src="'+row.image+'" height="50" width="100">'
                     }
                 },
-
-                /* Show */ 
+                
                 /* EDIT */ {
                     mRender: function (data, type, row) {
                         return '<a href="/gyms/'+row.id+'/edit" class="table-edit btn btn-warning" data-id="' + row.id + '">EDIT</a>'
