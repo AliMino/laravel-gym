@@ -49,7 +49,7 @@
     </div>
 @else
     <div style="margin-left:30%;margin-top:20px;">
-        <h2>You don't have the premission to manage cities</h2>
+        <h2>You don't have the premission to manage city manager</h2>
         <a href="{{url('login')}}">click here to login</a>
     </div>
 @endif

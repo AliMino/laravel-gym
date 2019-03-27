@@ -119,7 +119,6 @@
                         <i class="fas fa-user-tie"></i>
                         <span>​City Managers</span>
                     </a>
-
                 </li>
                 @endif
 
