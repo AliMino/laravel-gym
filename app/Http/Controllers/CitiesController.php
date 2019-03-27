@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Country;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateCityRequest;
 
 class CitiesController extends Controller
 {
@@ -15,17 +16,16 @@ class CitiesController extends Controller
         return view('cities.create', [
             'countries' => Country::where('id', '<', 77)->get(),
             'last_selected_country' => Country::where('id', '=', 4)->first(),
-            'cities' => City::where('country_id', '=', 4)->get()
+            // 'cities' => City::where('country_id', '=', 4)->get()
         ]);
     }
-    public function store() {
-        if(City::where('name', '=', request()->name)->first() == null) {
-            City::create(request()->all());
-        }
+    public function store(CreateCityRequest $request) {
+        City::create($request->all());
+        
         return view('cities.create', [
             'countries' => Country::where('id', '<', 77)->get(),
-            'last_selected_country' => Country::where('id', '=', request()->country_id)->first(),
-            'cities' => City::where('country_id', '=', request()->country_id)->get()
+            'last_selected_country' => Country::where('id', '=', $request->country_id)->first(),
+            // 'cities' => City::where('country_id', '=', $request->country_id)->get()
         ]);
     }
     public function index() {

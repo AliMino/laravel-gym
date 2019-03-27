@@ -10,10 +10,17 @@
             @csrf
             <div>
                 <h2>Adding a city</h2>
-                <a>
-                    
-                </a>
                 <hr>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
                 <label>Select Country</label>
                 <select class="form-control select2" style="width: 100%;" name="country_id" id="country_list">
                     @foreach($countries as $country)
