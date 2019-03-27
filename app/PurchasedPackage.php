@@ -10,15 +10,13 @@ class PurchasedPackage extends Model
         'member_id',
         'package_id',
         'paid_price',
-        'num_of_sessions',
-        'attended_sessions',
         'gym_id'
 
     ];
 
     public function member()
     {
-        return $this->belongsTo(Member,'member_id');
+        return $this->belongsTo('App\Member','member_id');
     }
 
     public function trainingpackage()
@@ -29,6 +27,6 @@ class PurchasedPackage extends Model
 
     public function gym()
     {
-        return $this->belongsTo(Gym,'gym_id');
+        return $this->belongsTo('App\Gym','gym_id');
     }
 }

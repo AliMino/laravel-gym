@@ -13,7 +13,7 @@ use Stripe\File;
 class StoreController extends Controller
 {
     public function store(StoreGymRequest $request) {
-        $path = $request->file('img');
+        $path = $request->file('public/img');
         Gym::create(request()->all());
         return redirect()->route('gyms.index');
         
@@ -33,4 +33,5 @@ class StoreController extends Controller
     public function data_gyms(){
         return datatables()->of(Gym::all())->toJson();
     }  
+    
 }

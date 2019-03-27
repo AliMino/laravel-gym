@@ -35,10 +35,10 @@
                 @endforeach
             </select>
         </div>
-        <div>
+        <div class="form-group">
         <label for="exampleInputImage1">Cover Photo</label>
            <?php             
- echo Form::file('img');?>
+ echo Form::file('public/img');?>
 </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>

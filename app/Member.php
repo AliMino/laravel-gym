@@ -26,7 +26,7 @@ class Member extends Authenticatable implements JWTSubject,MustVerifyEmail
 
     public function training_session()
     {
-        return $this->belongsToMany(TrainingSession,'attendence'
+        return $this->belongsToMany('App\TrainingSession','attendance'
             ,'member_id','session_id');
     }
 

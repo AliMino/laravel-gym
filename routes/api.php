@@ -26,8 +26,11 @@ Route::post('login', 'Api\AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('logout', 'Api\AuthController@logout');
-    Route::put('member', 'Api\MemberController@update');
-    Route::get('sessions/', 'Api\TrainingsessionController@ShowRemainingSessions');
+    Route::put('member/{member}', 'Api\MemberController@update');
+    Route::get('mysessions/', 'Api\TrainingsessionController@ShowRemainingSessions');
+    Route::get('history/', 'Api\AttendanceController@ShowHistory');
+    Route::post('sessions/{session}/attend', 'Api\TrainingsessionController@AttendSession');
+
 
 });
 

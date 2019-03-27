@@ -15,6 +15,6 @@ class Gym extends Model
 
     public function city()
     {
-        return $this->belongsTo(city,'city_id');
+        return $this->belongsTo('App\city','city_id');
     }
 }
