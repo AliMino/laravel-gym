@@ -8,8 +8,12 @@ use App\Gym;
 
 class DeleteController extends Controller
 {
-    public function destroy(Gym $gym){
+    public function destroy($id){
+        $gym=Gym::find($id);
         $gym->delete();
-        return redirect()->route("index");
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+        //return redirect()->route("index");
     }
 }

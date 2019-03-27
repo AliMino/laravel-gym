@@ -20,18 +20,17 @@ class StoreController extends Controller
     }
 
     public function index(){
-        $gyms=Gym::all();
-        $citites=city::all();
+        $gyms=Gym::all();        
+
         return view ('gyms.index',[
-            'gyms'=>$gyms,
-            'cities'=>$citites
+            'gyms'=>$gyms,            
         ]);
     }
 
     
 
     public function data_gyms(){
-        return datatables()->of(Gym::all())->toJson();
+        return datatables()->of(Gym::with('city'))->toJson();
     }  
     
 }

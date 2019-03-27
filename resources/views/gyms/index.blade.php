@@ -14,8 +14,8 @@
   <thead>
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">City ID</th>
-      <th scope="col">Gym Manager ID</th>
+      <th scope="col">City</th>
+      <!-- <th scope="col">Gym Manager Name</th> -->
       <th scope="col">Created at</th>
       <th scope="col">Cover Photo</th>          
     </tr>
@@ -29,33 +29,13 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Delete Gym?? Are you sure?</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <div>
-                        <div id="csrf_value"  hidden >@csrf</div>
-                        {{--@method('DELETE')--}}
-                        <button type="button" row_delete="" id="delete_item"  class="btn btn-danger" data-dismiss="modal">Yes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
         <!-- /.content -->
   @endsection
   @section('scripts')
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script>
+<script type="text/javascript">
         $('#example').DataTable( {
             serverSide: true,
             ajax: {
@@ -67,10 +47,10 @@
                 type: 'get',            
             },
             columns: [
-                { data: 'name', name: 'name' },                                               
-                { data: 'city_id', name: 'city_id' },
-                { data: 'gym_manager_id', name: 'gym_manager_id'},
-                { data: 'created_at', name: 'created_at' },                
+                { data: 'name'},                                               
+                { data: 'city.name'},
+                
+                { data: 'created_at'},                
                 //image
                 {
                     mRender: function (data, type, row) {
@@ -85,7 +65,7 @@
                 },
                 /* DELETE */ {
                     mRender: function (data, type, row) {
-                        return '<a href="#" class="table-delete btn btn-danger" row_id="' + row.id + '" data-toggle="modal" data-target="#DeleteModal" id="delete_toggle">DELETE</a>'
+                       return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger"> Delete </button></a>'
                     }
                 },
             ],
@@ -96,31 +76,28 @@
             'info'        : true,
             'autoWidth'   : true,
         } );
-        // delete item script
-        $(document).on('click','#delete_toggle',function () {
-            var delete_id = $(this).attr('row_id');
-            $('#delete_item').attr('row_delete',delete_id);
-        });
-
-        $(document).on('click','#delete_item',function () {
-            var gym_id = $(this).attr('row_delete');
+        $(document).on('click', '.delete', function(){
+        var id = $(this).attr('id');
+        if(confirm("Are you sure you want to Delete this Package?"))
+        {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/gyms/'+gym_id,
-                type: 'DELETE',
-                success: function (data) {
-                    console.log('success');
-                    console.log(data);
-                    var table = $('#example').DataTable();
-                    table.ajax.reload();
-                },
-                error: function (response) {
-                    alert(' error');
-                    console.log(response);
+                url:"/gyms/"+id,
+                type:'DELETE',
+                success:function(data)
+                {
+                    alert("package deleted successfully");
+                    $('#example').DataTable().ajax.reload();
                 }
-            });
+            })
+        }
+        else
+        {
+            return false;
+        }
+    });
         });
     </script>
 @endsection
