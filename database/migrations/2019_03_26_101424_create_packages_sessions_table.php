@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchasedPackagesTable extends Migration
+class CreatePackagesSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,23 @@ class CreatePurchasedPackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchased_packages', function (Blueprint $table) {
+        Schema::create('packages_sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('member_id');
-            $table->foreign('member_id')->references('id')->on('members');
+            $table->unsignedBigInteger('session_id');
+            $table->foreign('session_id')->references('id')->on('training_sessions');
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('training_packages');
-            $table->integer('paid_price');
-            $table->unsignedBigInteger('gym_id');
-            $table->foreign('gym_id')->references('id')->on('gyms');
-
-
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('packages_sessions');
+    }
 }

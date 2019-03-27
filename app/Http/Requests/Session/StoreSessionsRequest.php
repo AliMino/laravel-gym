@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Session;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
-class StoreManagerRequest extends FormRequest
+class StoreSessionsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +24,7 @@ class StoreManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'email'=>'required|unique:users|email',
-            'password'=>'required|min:6',
-            'national_id'=>'required|unique:users',
-            //'image'=>'mimes:jpg,jpeg',
-            //'city_id'=>'required|exists:cities,id'
+            //
         ];
     }
-
 }

@@ -13,12 +13,14 @@ class CreateAttendenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendence', function (Blueprint $table) {
+        Schema::create('attendance', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('session_id');
             $table->foreign('session_id')->references('id')->on('training_sessions');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('member_id');
+            $table->foreign('member_id')->references('id')->on('members');
+            $table->date('attendance_date');
+            $table->time('attendance_time');
             $table->timestamps();
         });
     }

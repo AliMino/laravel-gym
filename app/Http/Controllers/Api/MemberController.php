@@ -6,14 +6,15 @@ use App\Http\Requests\UpdateMemberRequest;
 use App\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
 
-    public function update(UpdateMemberRequest $request,$member)
+    public function update(UpdateMemberRequest $request)
     {
-
-        $member=Member::findorfail($member);
+        $id = Auth::user()->id;
+        $member=Member::findorfail($id);
         $member->name = $request->name;
         $member->gender=$request->gender;
         $member->profile_img=$request->profile_img;
