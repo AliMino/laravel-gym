@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateManagerRequest extends FormRequest
+class CreateCityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateManagerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,11 +24,7 @@ class UpdateManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email,' . $this->user->email,
-            'national_id'=>'required|unique:users,national_id,' . $this->user->id,
-            //'image'=>'image|mimes:jpg,jpeg',
-            //'city_id'=>'required|exists:cities,id'
+            'name' => 'required|min:3',
         ];
     }
 }

@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="../../bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
@@ -115,6 +116,7 @@
                 @if(auth()->user() && auth()->user()->can('manage gym managers'))
                 <li class="active treeview">
                     <a href="#">
+                        <i class="fas fa-user-secret"></i>
                         <span>Gym Managers</span>
                     </a>
                 </li>
@@ -123,7 +125,7 @@
                 @if(auth()->user() && auth()->user()->can('manage city managers'))
                 <li class="treeview">
                     <a href="{{route('citymanagers.index')}}">
-                        <i class="fa fa-files-o"></i>
+                        <i class="fas fa-user-tie"></i>
                         <span>​City Managers</span>
                     </a>
 
@@ -133,6 +135,7 @@
                 @if(auth()->user() && auth()->user()->can('manage users'))
                 <li>
                     <a href="/users">
+                        <i class="far fa-address-card"></i>
                         <span>Users</span>
                     </a>
                 </li>
@@ -140,7 +143,8 @@
 
                 @if(auth()->user() && auth()->user()->can('manage cities'))
                 <li>
-                    <a href="/cities/create">
+                    <a href="{{route('cities.create')}}">
+                        <i class="fas fa-city"></i>
                         <span>Cities</span>
                     </a>
                 </li>
@@ -149,6 +153,7 @@
                 @if(auth()->user() && auth()->user()->can('manage gyms'))
                 <li class="treeview">
                     <a href="#">
+                        <i class="fas fa-dumbbell"></i>
                         <span>Gyms</span>
                     </a>
                 </li>
@@ -157,6 +162,7 @@
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li class="treeview">
                     <a href="#">
+                        <i class="fas fa-people-carry"></i>
                         <span>Training Packages</span>
                     </a>
                 </li>
@@ -165,6 +171,7 @@
                 @if(auth()->user() && auth()->user()->can('manage coaches'))
                     <li>
                         <a href="{{route('coaches.index')}}">
+                            <i class="far fa-hand-point-right"></i>
                             <span>Coaches</span>
                         </a>
                     </li>
@@ -173,6 +180,7 @@
                 @if(auth()->user() && auth()->user()->can('manage attendance'))
                 <li>
                     <a href="pages/calendar.html">
+                        <i class="fas fa-edit"></i>
                         <span>Attendance</span>
                     </a>
                 </li>
@@ -181,6 +189,8 @@
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li>
                     <a href="{{route('payment.create')}}">
+                        <i class="fab fa-stripe"></i>
+                        
                         <span>BuyPackage</span>
                     </a>
                 </li>
@@ -189,6 +199,7 @@
                 @if(auth()->user() && auth()->user()->can('manage revenue'))
                 <li class="treeview">
                     <a href="#">
+                        <i class="fas fa-chart-line"></i>
                         <span>Revenue</span>
                     </a>
                 </li>
@@ -211,7 +222,7 @@
 
 </div>
         <!-- ./wrapper -->
-
+        
         <!-- jQuery 3 -->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
         <!-- jQuery UI 1.11.4 -->

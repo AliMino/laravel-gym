@@ -64,8 +64,13 @@ Route::resource('coaches','Coach\CoachController');
 Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
 // cities
+Route::get('/cities', 'CitiesController@index')->name('cities.index');
+Route::get('/cities/datatable', 'CitiesController@data_table')->name('cities.datatable');
 Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
 Route::post('/cities','CitiesController@store')->name('cities.store');
+Route::get('/cities/{city_id}/edit', 'CitiesController@edit')->name('cities.edit');
+Route::put('/cities/{city_id}', 'CitiesController@update')->name('cities.update');
+
 
 //attendance
 Route::get('/attendance','Attendance\AttendanceController@index')->name('attendance.index');
@@ -101,7 +106,7 @@ Route::post('/payments', 'Payment\PaymentController@store')->name('payment.store
 
 
 
-//City Manager
+//City Managers
 Route::get('/citymanagers','CityManagerController@index')->name('citymanagers.index');
 Route::get('/citymanagers/create','CityManagerController@create')->name('citymanagers.create');
 Route::post('/citymanagers','CityManagerController@store')->name('citymanagers.store');
@@ -112,4 +117,14 @@ Route::delete('/citymanagers/{manager}','CityManagerController@destroy')->name('
 Route::get('/citymanagersdata', 'CityManagerController@getdata')->name('citymanagers.data');
 
 
-
+//Gym Managers
+Route::get('/gymmanagers','GymManagerController@index')->name('gymmanagers.index');
+Route::get('/gymmanagers/create','GymManagerController@create')->name('gymmanagers.create');
+Route::post('/gymmanagers','GymManagerController@store')->name('gymmanagers.store');
+Route::get('/gymmanagers/{manager}','GymManagerController@show')->name('gymmanagers.show');
+Route::get('/gymmanagers/{manager}/edit','GymManagerController@edit')->name('gymmanagers.edit');
+Route::put('/gymmanagers/{manager}','GymManagerController@update')->name('gymmanagers.update');
+Route::delete('/gymmanagers/{manager}','GymManagerController@destroy')->name('gymmanagers.destroy');
+Route::get('/gymmanagersdata', 'GymManagerController@getdata')->name('gymmanagers.data');
+Route::get('/ban/{manager}','GymManagerController@ban')->name('gymmanagers.ban');
+Route::get('/unban/{manager}','GymManagerController@unban')->name('gymmanagers.unban');

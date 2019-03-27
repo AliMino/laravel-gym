@@ -14,4 +14,7 @@ class Country extends Model
         'region_code',
         'sub_region_code',
     ];
+    public function cities() {
+        return $this->hasMany("App\City");
+    }
 }

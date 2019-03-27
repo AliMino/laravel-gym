@@ -6,12 +6,11 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
-use App\City;
+use App\Gym;
 use App\Http\Requests\StoreManagerRequest;
 use App\Http\Requests\UpdateManagerRequest;
 
-
-class CityManagerController extends Controller
+class GymManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +19,7 @@ class CityManagerController extends Controller
      */
     public function index()
     {
-        return view('cityManagers.index');
-
+        return view('gymManagers.index');
     }
 
     /**
@@ -31,8 +29,8 @@ class CityManagerController extends Controller
      */
     public function create()
     {
-        return view('cityManagers.create',[
-            'cities'=>City::all()
+        return view('gymManagers.create',[
+            'gyms'=>Gym::all()
         ]);
     }
 
@@ -44,14 +42,13 @@ class CityManagerController extends Controller
      */
     public function store(StoreManagerRequest $request)
     {
-        //dd($request->city_id);
         $user=User::create($request->all());
-        $user->assignRole('city manager');
+        $user->assignRole('gym manager');
         $request->validate([
-            'city_id'=>'required_if:role,"city manager"|exists:cities,id'
+            'gym_id'=>'required_if:role,"gym manager"|exists:gyms,id'
         ]);
 
-        return redirect()->route('citymanagers.index');
+        return redirect()->route('gymmanagers.index');
     }
 
     /**
@@ -60,11 +57,9 @@ class CityManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( $user)
+    public function show($id)
     {
-        return view('cityManagers.show',[
-            'citymanager'=>User::find($user),
-        ]);
+        //
     }
 
     /**
@@ -73,11 +68,11 @@ class CityManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit( $user)
+    public function edit($user)
     {
-        return view('cityManagers.edit',[
-            'citymanager'=>User::find($user),
-            'cities'=>City::all(),
+        return view('gymManagers.edit',[
+            'gymmanager'=>User::find($user),
+            'gyms'=>Gym::all(),
         ]);
     }
 
@@ -90,17 +85,14 @@ class CityManagerController extends Controller
      */
     public function update(UpdateManagerRequest $request, $user)
     {
-        $request->validate([
-            'city_id'=>'required_if:role,"city manager"|exists:cities,id'
-        ]);
         User::find($user)->update([
             'name'=>$request->name,
             'email'=>$request->email,
             'national_id'=>$request->national_id,
             'image'=>$request->avatar_img,
-            'city_id'=>$request->city_id,
+            'gym_id'=>$request->gym_id,
         ]);
-        return redirect()->route('citymanagers.index');
+        return redirect()->route('gymmanagers.index');
     }
 
     /**
@@ -109,16 +101,29 @@ class CityManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $user)
+    public function destroy($user)
     {
-        dd($user);
         $user->delete();
 
-        return redirect()->route('citymanagers.index');
+        return redirect()->route('gymmanagers.index');
+    }
+
+    public function ban( $user)
+    {
+        $banedUser=User::find($user);
+        $banedUser->ban();
+        return redirect()->route('gymmanagers.index');
+    }
+
+    public function unban( $user)
+    {
+        $unBanedUser=User::find($user);
+        $unBanedUser->unban();
+        return redirect()->route('gymmanagers.index');
     }
 
     public function getdata(){
-        $users=User::role('city manager')->get();
-        return datatables()->of($users)->toJson();
+        return datatables()->of(User::role('gym manager')->get())->toJson();
     }
+
 }

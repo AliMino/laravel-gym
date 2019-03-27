@@ -10,4 +10,7 @@ class city extends Model
         'name',
         'country_id',
     ];
+    public function country() {
+        return $this->belongsTo("App\Country");
+    }
 }
