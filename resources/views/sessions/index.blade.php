@@ -1,5 +1,14 @@
 @extends('layouts.base')
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <a class="btn btn-app" href="{{route('sessions.create')}}">
     <i class="fa fa-edit"></i>
         Add Session

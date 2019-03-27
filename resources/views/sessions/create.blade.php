@@ -9,6 +9,9 @@
     </ul>
 </div>
 @endif
+<div>
+    <h2 for="Title">Add a Session</h2>
+</div>
 
     <form action="{{route('sessions.store')}}" method="POST">
         @csrf

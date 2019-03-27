@@ -46,6 +46,8 @@ Route::get('/data_packages', 'TrainingPackage\StoreController@data_packages');
 
 // training sessions
 Route::get('/sessions/create', 'TrainingSession\CreateController@create')->name('sessions.create');
+Route::get('/sessions/{id}/edit', 'TrainingSession\TrainingSessionController@edit')->name('sessions.edit');
+Route::post('/sessions/{id}', 'TrainingSession\TrainingSessionController@update')->name('sessions.update');
 Route::post('/sessions','TrainingSession\StoreController@store')->name('sessions.store');
 Route::get('/sessions','TrainingSession\TrainingSessionController@index')->name('sessions.index');
 Route::get('sessionsdata', 'TrainingSession\TrainingSessionController@getdata')->name('sessions.data');
