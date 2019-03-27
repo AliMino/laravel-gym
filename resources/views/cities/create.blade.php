@@ -10,6 +10,9 @@
             @csrf
             <div>
                 <h2>Adding a city</h2>
+                <a>
+                    
+                </a>
                 <hr>
                 <label>Select Country</label>
                 <select class="form-control select2" style="width: 100%;" name="country_id" id="country_list">
