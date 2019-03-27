@@ -7,10 +7,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\DB;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
         //Managers
-        'national_id','avatar_img','city_id'
+        'national_id','avatar_img','city_id','gym_id',
     ];
 
     /**
@@ -51,6 +53,11 @@ class User extends Authenticatable
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function gym()
+    {
+        return $this->belongsTo(Gym::class);
     }
 
     public function getRole() {

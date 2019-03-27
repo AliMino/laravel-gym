@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class StoreManagerRequest extends FormRequest
 {
@@ -29,7 +30,7 @@ class StoreManagerRequest extends FormRequest
             'password'=>'required|min:6',
             'national_id'=>'required|unique:users',
             //'image'=>'mimes:jpg,jpeg',
-            'city_id'=>'required|exists:cities,id'
+            //'city_id'=>'required|exists:cities,id'
         ];
     }
 
