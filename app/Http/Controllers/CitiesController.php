@@ -28,4 +28,13 @@ class CitiesController extends Controller
             'cities' => City::where('country_id', '=', request()->country_id)->get()
         ]);
     }
+    public function index() {
+        return view('cities.index', []);
+    }
+    public function data_table(){
+        return datatables(City::all())
+        ->addColumn('countryName', function(City $city) {
+            return Country::where("id", "=", $city->country_id)->first()->name;
+        })->toJson();
+    }
 }

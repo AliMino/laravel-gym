@@ -4,34 +4,21 @@
 @endsection
 @section('content')
 
-<div class="row">
-    <div class="col">
-        <form action="{{route('cities.store')}}" method="POST">
-            @csrf
-            <div>
-                <h2>Adding a city</h2>
-                <hr>
-                <label>Select Country</label>
-                <select class="form-control select2" style="width: 100%;" name="country_id" id="country_list">
-                    @foreach($countries as $country)
-                        @if($country->id == $last_selected_country->id)    
-                            <option value={{$country->id}} selected>{{$country->name}} - {{$country->full_name}}</option>
-                        @else
-                            <option value={{$country->id}}>{{$country->name}} - {{$country->full_name}}</option>
-                        @endif
-                    @endforeach
-                </select>
-            </div>
-        
-            <div>
-                <label>City name</label>
-                <input type="text" class="form-control" placeholder="enter city name" name="name">
-            </div>
-            <br>
-            <button type="submit" class="btn btn-danger">Add city</button>
-        </form>
-    </div>
 
+<div class="col">
+    <a href="{{ url('cities/create') }}">
+        <button class="btn btn-primary">Add new city</button>
+    </a>
+    <table id="datatable">
+        <thead>
+            <th>ID</th>
+            <th>City Name</th>
+            <th>Country Name</th>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 </div>
 
 
@@ -53,8 +40,5 @@
         });
     });
     </script>
-    <script>
-
-    </script>
-
+    
 @endsection

@@ -59,8 +59,13 @@ Route::resource('coaches','Coach\CoachController');
 Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
 // cities
+Route::get('/cities', 'CitiesController@index')->name('cities.index');
+Route::get('/cities/datatable', 'CitiesController@data_table')->name('cities.datatable');
 Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
 Route::post('/cities','CitiesController@store')->name('cities.store');
+Route::get('/cities/{city_id}/edit', 'CitiesController@edit')->name('cities.edit');
+Route::put('/cities/{city_id}', 'CitiesController@update')->name('cities.update');
+
 
 
 
