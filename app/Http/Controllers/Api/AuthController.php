@@ -8,6 +8,7 @@ use App\Notifications\MailNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\JWT;
 
@@ -20,9 +21,10 @@ class AuthController extends Controller
         $member->name = $request->name;
         $member->email = $request->email;
         $member->gender=$request->gender;
-        $member->profile_img=$request->profile_img;
         $member->date_of_birth=$request->date_of_birth;
         $member->password = bcrypt($request->password);
+        $path = Storage::disk('public')->put('avatars', $request->profile_img);
+        $member->profile_img =$path;
         $member->save();
 
         $member->sendEmailVerificationNotification();
