@@ -24,6 +24,18 @@ class Member extends Authenticatable implements JWTSubject,MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    public function training_session()
+    {
+        return $this->belongsToMany('App\TrainingSession','attendance'
+            ,'member_id','session_id');
+    }
+
+    public function training_package()
+    {
+        return $this->belongsToMany('App\TrainingPackage','purchased_packages'
+            ,'member_id','package_id');
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

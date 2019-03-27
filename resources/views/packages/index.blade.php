@@ -7,20 +7,16 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Packages Table</h3><br>
-                    <a href='/packages/create' style="margin-top: 10px;" class="btn btn-success">Create Package</a>
+                    <a href="{{route('packages.create')}}" style="margin-top: 10px;" class="btn btn-success">Create Package</a>
                 </div>                
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped">
                         <thead>
-                        <tr>
-                            <th>Id</th>                            
-                            <th>Gym</th>
-                            <th>No of Sessions</th>
-                            <th>Price in Dollars </th>
-                            <th>Created At</th>
-                            <th>Updated At</th>                            
-                            <th>Edit</th>
-                            <th>Delete</th>
+                        <tr>                            
+                            <th scope="col">ID</th> 
+                            <th scope="col">No of Sessions</th>                          
+                                                    
+                            <th scope="col">Price</th>                                                                                   
                         </tr>
                         </thead>
                     </table>
@@ -47,11 +43,11 @@
 
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
 </section>        
 @endsection
-@section('extra_scripts')
+@section('scripts')
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
         $('#example').DataTable( {
@@ -65,18 +61,13 @@
                 type: 'get',            
             },
             columns: [
-                { data: 'id', name: 'id' },                
-                { data: 'gyms.name', name: 'gyms.name' },
+                { data: 'id', name: 'id' }, 
+               /*  { data: 'name', name: 'name' },              
+                { data: 'gyms.name', name: 'gyms.name' }, */
                 { data: 'no_of_sessions', name: 'no_of_sessions' },
-                { data: 'price_cents', name: 'price_cents'},
-                { data: 'created_at', name: 'created_at' },
-                { data: 'updated_at', name: 'updated_at' },
+                { data: 'price_cent', name: 'price_cent'},               
 
-                /* Show */ {
-                    mRender: function (data, type, row) {
-                        return '<a href="/packages/'+row.id+'" class="table-delete btn btn-info" data-id="' + row.id + '">Show</a>'
-                    }
-                },
+                /* Show */ 
                 /* EDIT */ {
                     mRender: function (data, type, row) {
                         return '<a href="/packages/'+row.id+'/edit" class="table-edit btn btn-warning" data-id="' + row.id + '">EDIT</a>'

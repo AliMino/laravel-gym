@@ -42,6 +42,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="../../bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="../../plugins/iCheck/all.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="../../bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+
+
+
     @yield('styles')
 
 </head>
@@ -234,6 +253,16 @@
         <!-- DataTables -->
         <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <!-- InputMask -->
+            <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+            <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+            <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+            <script src={{asset('bower_components/select2/dist/js/select2.full.min.js')}}></script>
+
+
+
+
 
         <div class="content-wrapper">
             <!-- content -->

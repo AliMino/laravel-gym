@@ -10,10 +10,11 @@ class Gym extends Model
         'name',
         'city_id',
         'gym_manager_id',
+        'image',
     ];
 
     public function city()
     {
-        return $this->belongsTo(city,'city_id');
+        return $this->belongsTo('App\city','city_id');
     }
 }
