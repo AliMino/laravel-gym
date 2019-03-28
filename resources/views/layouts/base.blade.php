@@ -98,13 +98,9 @@
                         </li>
                     @else
                         <li>
-                            <h4>Welcome {{auth()->user()->name}}</h4>
+                            <h4>{{auth()->user()->name}}</h4>
                         </li>
-                        <li>
-                            <a>
-                                <span>profile</span>
-                            </a>
-                        </li>
+                        
                     @endif
                 </ul>
             </div>

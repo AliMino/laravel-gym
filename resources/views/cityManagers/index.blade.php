@@ -4,6 +4,9 @@
     @if(auth()->user() && auth()->user()->can('manage city managers'))
         <section class="content">
             <div class="row">
+                <a href="{{route('citymanagers.create')}}">
+                    <button class="btn btn-primary" style="margin-left:15px;margin-bottom:15px">Add City Manager</button>
+                </a>
                 <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
@@ -71,7 +74,7 @@
                 },
                 {
                     mRender: function (data, type, row) {
-                        return '<center><a href="/'+row.id+'"  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></center>'
+                        return '<center><a href="/citymanagers/'+row.id+'"  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></center>'
                     }
                 },
             ],

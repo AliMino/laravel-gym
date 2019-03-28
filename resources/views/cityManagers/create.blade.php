@@ -12,7 +12,10 @@
                 </ul>
             </div>
         @endif
-
+        
+        <a href="{{route('citymanagers.index')}}">
+            <button class="btn btn-primary">View all Cities</button>
+        </a>
         <form action="{{route('citymanagers.store')}}" method="POST">
             @csrf
             <div class="form-group">

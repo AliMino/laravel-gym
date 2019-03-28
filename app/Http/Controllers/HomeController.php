@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function index() {
         $this->manageRoles();
-        return view('cities.index');
+        return view('home');
+        // return view('cities.index');
     }
 
     private function getPermission(string $name) {
@@ -88,7 +89,5 @@ class HomeController extends Controller
         if(auth()->user()->email === "admin@admin.com" || auth()->user()->email === "admin2@admin.com") {
             auth()->user()->assignRole('admin');
         }
-        // return DB::table('roles')->join('role_has_permissions', 'role_id', '=', 3)->get();
-
     }
 }
