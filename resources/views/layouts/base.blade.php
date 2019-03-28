@@ -83,8 +83,29 @@
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
-            <div class="navbar-custom-menu">
+            <div class="navbar-custom-menu" style="margin-right:0%">
                 <ul class="nav navbar-nav">
+                    @if(auth()->user() == null)
+                        <li>
+                            <a href="{{route('login')}}">
+                                <span>login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('register')}}">
+                                <span>register</span>
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <h4>Welcome {{auth()->user()->name}}</h4>
+                        </li>
+                        <li>
+                            <a>
+                                <span>profile</span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>
