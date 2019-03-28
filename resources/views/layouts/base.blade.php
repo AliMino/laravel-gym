@@ -170,7 +170,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage gyms'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('gyms.index')}}">
                         <i class="fas fa-dumbbell"></i>
                         <span>Gyms</span>
                     </a>
@@ -179,7 +179,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('packages.index')}}">
                         <i class="fas fa-people-carry"></i>
                         <span>Training Packages</span>
                     </a>
