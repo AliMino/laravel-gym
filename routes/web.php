@@ -99,7 +99,6 @@ Route::get('/data_member','Member\MembersController@data_member');
 
 
 
-
 // buying packages
 Route::get('/payments/create', 'Payment\PaymentController@create')->name('payment.create');
 Route::post('/payments', 'Payment\PaymentController@store')->name('payment.store');

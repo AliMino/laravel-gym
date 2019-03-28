@@ -17,11 +17,13 @@ class Member extends Authenticatable implements JWTSubject,MustVerifyEmail
         'password',
         'gender',
         'date of birth',
-        'profile img'
+        'profile img',
+        'activate',
+        'activate_token'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','activate_token'
     ];
 
     public function training_session()

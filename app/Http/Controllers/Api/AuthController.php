@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\RegisterAuthRequest;
 use App\Member;
+use App\Notifications\ActivateMember;
 use App\Notifications\MailNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\JWT;
+use Illuminate\Support\Str;
 
 
 class AuthController extends Controller
@@ -26,11 +28,11 @@ class AuthController extends Controller
         $member->password = bcrypt($request->password);
         $path = Storage::disk('public')->put('avatars', $request->profile_img);
         $member->profile_img =$path;
+        $member->activate_token = Str::random(40);
         $member->save();
 
-        $member->sendEmailVerificationNotification();
+        $member->notify(new ActivateMember($member));
 
-        $member->notify(new MailNotification());
 
 
         return $this->login($request);
@@ -59,6 +61,24 @@ class AuthController extends Controller
             'data'=>$currentuser,
             'token' => $jwt_token,
         ]);
+    }
+
+    public function ActivateMember($token)
+    {
+
+        $member = Member::where('activate_token', $token)->first();
+
+        if (!$member) {
+            return response()->json([
+                'message' => 'This activation token is invalid.'
+            ], 404);
+        }
+
+        $member->activate = true;
+        $member->activate_token = '';
+        $member->save();
+        $member->notify(new MailNotification());
+        return $member;
     }
 
     public function logout(Request $request)
