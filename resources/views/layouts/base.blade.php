@@ -100,7 +100,12 @@
                         <li>
                             <h4>{{auth()->user()->name}}</h4>
                         </li>
-                        
+                        <li>
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <input type="submit" value="logout" class="btn btn-dark">
+                            </form>
+                        </li>
                     @endif
                 </ul>
             </div>
