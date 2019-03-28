@@ -43,7 +43,10 @@ class User extends Authenticatable implements BannableContract
         'email_verified_at' => 'datetime',
     ];
 
-
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 
     public function city()
     {
@@ -58,6 +61,7 @@ class User extends Authenticatable implements BannableContract
     public function getRole() {
         return DB::table('roles')
         ->join('model_has_roles', 'model_has_roles.role_id', 'roles.id')
+        ->where('model_has_roles.model_id',auth()->user()->id)
         ->first();
     }
 }

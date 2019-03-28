@@ -15,7 +15,13 @@ class PaymentController extends Controller
 {
     public function create()
     {
-        return view('payments.create',['members'=>Member::all(),'packages'=> TrainingPackage::all(),'gyms'=>Gym::all(),]);
+        switch(auth()->user()->getRole()->id)
+        {
+            case 1: $gyms =Gym::all() ; break;
+            case 2: $gyms =Gym::where('city_id',auth()->user()->city_id)->get(); break;
+            case 3: $gyms =Gym::where('city_id',auth()->user()->gym_id)->get(); break;
+        }
+        return view('payments.create',['members'=>Member::all(),'packages'=> TrainingPackage::all(),'gyms'=>$gyms,]);
     }
     public function store(StorePaymentRequest $request)
     {
