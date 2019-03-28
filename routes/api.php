@@ -22,14 +22,14 @@ Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
 
 
-
-
-Route::group(['middleware' => 'auth:api'], function () {
+Route::middleware(['auth:api', 'VerfiedRoutes'])->group(function () {
     Route::get('logout', 'Api\AuthController@logout');
-    Route::put('member/{member}', 'Api\MemberController@update');
+    Route::put('member/', 'Api\MemberController@update');
     Route::get('mysessions/', 'Api\TrainingsessionController@ShowRemainingSessions');
     Route::get('history/', 'Api\AttendanceController@ShowHistory');
     Route::post('sessions/{session}/attend', 'Api\TrainingsessionController@AttendSession');
+    Route::get('auth/signup/activate/{token}', 'Api\AuthController@ActivateMember');
+
 
 
 });

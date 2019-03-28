@@ -68,9 +68,8 @@ Route::get('/cities', 'CitiesController@index')->name('cities.index');
 Route::get('/cities/datatable', 'CitiesController@data_table')->name('cities.datatable');
 Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
 Route::post('/cities','CitiesController@store')->name('cities.store');
-Route::get('/cities/{city_id}/edit', 'CitiesController@edit')->name('cities.edit');
-Route::put('/cities/{city_id}', 'CitiesController@update')->name('cities.update');
-
+Route::get('/cities/{city}/edit', 'CitiesController@edit')->name('cities.edit');
+Route::put('/cities', 'CitiesController@update')->name('cities.update');
 
 //attendance
 Route::get('/attendance','Attendance\AttendanceController@index')->name('attendance.index');
@@ -79,7 +78,6 @@ Route::get('/data_attend', 'Attendance\AttendanceController@data_attend');
 //members
 Route::get('/members','Member\MembersController@index')->name('members.index');
 Route::get('/data_member','Member\MembersController@data_member');
-
 
 
 

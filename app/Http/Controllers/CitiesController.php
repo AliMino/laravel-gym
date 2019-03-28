@@ -6,6 +6,7 @@ use App\City;
 use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCityRequest;
+use App\Http\Requests\UpdateCityRequest;
 
 class CitiesController extends Controller
 {
@@ -28,9 +29,24 @@ class CitiesController extends Controller
             // 'cities' => City::where('country_id', '=', $request->country_id)->get()
         ]);
     }
+
     public function index() {
         return view('cities.index', []);
     }
+
+    public function edit(City $city) {
+        return view('cities.edit', [
+            'city' => $city,
+        ]);
+    }
+
+    public function update(City $city, UpdateCityRequest $request) {
+        // dd($request);
+        // dd(City::where("id", "=", 1)->first());
+        City::where("id", "=", 1)->first()->update($request->all());
+        return redirect()->route('cities.index');
+    }
+
     public function data_table(){
         return datatables(City::all())
         ->addColumn('countryName', function(City $city) {

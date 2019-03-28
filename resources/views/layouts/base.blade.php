@@ -83,8 +83,27 @@
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
-            <div class="navbar-custom-menu">
+            <div class="navbar-custom-menu" style="margin-right:0%">
                 <ul class="nav navbar-nav">
+                    @if(auth()->user() == null)
+                        <li>
+                            <a href="{{route('login')}}">
+                                <span>login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('register')}}">
+                                <span>register</span>
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <input type="submit" value="logout" class="btn btn-dark">
+                            </form>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>
@@ -112,23 +131,22 @@
 
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-
-                @if(auth()->user() && auth()->user()->can('manage gym managers'))
-                <li class="active treeview">
-                    <a href="#">
-                        <i class="fas fa-user-secret"></i>
-                        <span>Gym Managers</span>
-                    </a>
-                </li>
-                @endif
-
+                
                 @if(auth()->user() && auth()->user()->can('manage city managers'))
                 <li class="treeview">
                     <a href="{{route('citymanagers.index')}}">
                         <i class="fas fa-user-tie"></i>
                         <span>​City Managers</span>
                     </a>
+                </li>
+                @endif
 
+                @if(auth()->user() && auth()->user()->can('manage gym managers'))
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fas fa-user-secret"></i>
+                        <span>Gym Managers</span>
+                    </a>
                 </li>
                 @endif
 
@@ -143,7 +161,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage cities'))
                 <li>
-                    <a href="{{route('cities.create')}}">
+                    <a href="{{route('cities.index')}}">
                         <i class="fas fa-city"></i>
                         <span>Cities</span>
                     </a>
@@ -152,7 +170,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage gyms'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('gyms.index')}}">
                         <i class="fas fa-dumbbell"></i>
                         <span>Gyms</span>
                     </a>
@@ -161,7 +179,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage training packages'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('packages.index')}}">
                         <i class="fas fa-people-carry"></i>
                         <span>Training Packages</span>
                     </a>
