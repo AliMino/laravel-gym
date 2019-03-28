@@ -14,11 +14,21 @@ use Illuminate\Support\MessageBag;
 class TrainingSessionController extends Controller
 {
     public function index() {
-
        return view('sessions.index');
     }
     public function getdata() {
-        return datatables()->of(TrainingSession::all())->toJson();
+        switch(auth()->user()->getRole()->id)
+        {
+            case 1: $sessions=TrainingSession::all(); break;
+            case 2: $sessions =TrainingSession::join('gyms','training_sessions.gym_id','gyms.id')
+                ->join('cities','gyms.city_id','cities.id')->where('cities.id',auth()->user()->city_id)
+                ->select('training_sessions.*')->get();
+                break;
+            case 3: $sessions =TrainingSession::join('gyms','training_sessions.gym_id','gyms.id')
+                ->where('gyms.id',auth()->user()->gym_id)->select('training_sessions.*')->get();
+                break;
+        }
+        return datatables()->of($sessions)->toJson();
     }
 
     public function edit($id) {
