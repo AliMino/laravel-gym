@@ -24,11 +24,11 @@ class UpdateMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'password' => 'required|confirmed|min:6|max:20',
+            'name' => 'string',
+            'password' => 'confirmed|min:6|max:20',
             'gender' => 'in:male,female',
-            'profile_img' => 'required',
-            'date_of_birth' => 'required|date_format:Y-m-d',
+            'profile_img' => 'image|mimes:jpg,jpeg',
+            'date_of_birth' => 'date_format:Y-m-d',
         ];
     }
 }

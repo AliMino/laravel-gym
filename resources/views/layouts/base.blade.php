@@ -197,6 +197,15 @@
                     </li>
                 @endif
 
+                @if(auth()->user() && auth()->user()->can('manage coaches'))
+                    <li>
+                        <a href="{{route('sessions.index')}}">
+                            <i class="far fa-hand-point-right"></i>
+                            <span>Sessions</span>
+                        </a>
+                    </li>
+                @endif
+
                 @if(auth()->user() && auth()->user()->can('manage attendance'))
                 <li>
                     <a href="pages/calendar.html">
@@ -210,7 +219,7 @@
                 <li>
                     <a href="{{route('payment.create')}}">
                         <i class="fab fa-stripe"></i>
-                        
+
                         <span>BuyPackage</span>
                     </a>
                 </li>
@@ -242,7 +251,7 @@
 
 </div>
         <!-- ./wrapper -->
-        
+
         <!-- jQuery 3 -->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
         <!-- jQuery UI 1.11.4 -->

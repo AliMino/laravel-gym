@@ -8,8 +8,12 @@ use App\TrainingPackage;
 
 class DeleteController extends Controller
 {
-    public function destroy(TrainingPackage $package){
+    public function destroy($id){
+        $package=TrainingPackage::find($id);
         $package->delete();
-        return redirect()->route("index");
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+        //return redirect()->route("index");
     }
 }

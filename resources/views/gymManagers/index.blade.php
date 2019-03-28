@@ -21,7 +21,7 @@
                   <th>GYM</th>
                   <th><center>Edit</center></th>
                   <th><center>Delete</center></th>
-                  <th><center>Is Baned</center></th>
+                  <th><center>Ban/UnBan</center></th>
                 </tr>
                 </thead>
                 
@@ -66,10 +66,10 @@
                 {
                     mRender: function (data, type, row) {
 
-                        if(row.banned_at)
-                            return '<center><a href="/ban/'+row.id+'"  class="btn btn-danger"><i class="glyphicon glyphicon-ban-circle"></i></a></center>'
+                        if(!row.banned_at)
+                            return '<center><a href="/ban/'+row.id+'"  class="btn btn-danger" title="ban"><i class="glyphicon glyphicon-ban-circle"></i></a></center>'
                         else
-                            return '<center><a href="/unban/'+row.id+'"  class="class="btn btn-block btn-success""><i class="glyphicon glyphicon-ok-circle"></i></a></center>'
+                            return '<center><a href="/unban/'+row.id+'"  class="btn btn-success" title="unban"><i class="glyphicon glyphicon-ok-circle"></i></a></center>'
 
                     }   
                 },

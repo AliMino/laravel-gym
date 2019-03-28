@@ -7,6 +7,7 @@ use App\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MemberController extends Controller
 {
@@ -15,11 +16,13 @@ class MemberController extends Controller
     {
         $id = Auth::user()->id;
         $member=Member::findorfail($id);
-        $member->name = $request->name;
-        $member->gender=$request->gender;
-        $member->profile_img=$request->profile_img;
-        $member->date_of_birth=$request->date_of_birth;
-        $member->password = bcrypt($request->password);
+        if($request->name){$member->name = $request->name;}
+        if($request->gender){$member->gender = $request->gender;}
+        if($request->date_of_birth){$member->date_of_birth = $request->date_of_birth;}
+        if($request->password){$member->password = bcrypt($request->password);}
+        if($request->profile_img){
+            $path = Storage::disk('public')->put('avatars', $request->profile_img);
+            $member->profile_img =$path;}
         $member->save();
 
         return response()->json([

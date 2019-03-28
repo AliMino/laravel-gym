@@ -32,7 +32,7 @@
               <label>Choose a package</label>
               <select class="form-control" name="package-id">
                     @foreach ($packages as $package)
-                    <option value="{{$package->id}}">{{$package->no_of_sessions}} Session</option>
+                    <option value="{{$package->id}}">{{$package->name }} has {{$package->no_of_sessions }} session</option>
                     @endforeach
               </select>
             </div>

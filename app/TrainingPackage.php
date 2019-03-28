@@ -15,7 +15,7 @@ class TrainingPackage extends Model
         return $this->belongsTo('App\Gym','id','id');
     }
 
-    public function getPackagePriceAttribute($cents){
+    public static function getPackagePriceAttribute($cents){
         $dollars = $cents / 100;
         return $dollars;
     }
