@@ -22,16 +22,20 @@ class TrainingSessionController extends Controller
     }
 
     public function edit($id) {
-        if(count(Attendance::where('session_id',$id)->get())>0){
+        if($this->giveEditPermission($id)){
+            if(count(Attendance::where('session_id',$id)->get())>0){
                 $errors= new MessageBag();
                 $errors->add('attendence','this session has people attending it');
                 return view('sessions.index')->withErrors($errors);
-        }else{
+            }else{
             return view('sessions.edit',[
                 'session'=>TrainingSession::where('id',$id)->first(),
                 ]);
         }
+    }else{
+        return redirect()->route('sessions.index');
     }
+}
 
     public function update(Request $request,$id) {
 
@@ -98,6 +102,32 @@ class TrainingSessionController extends Controller
            }
         }
         return false;
+    }
+    private function giveEditPermission($id){
+        switch(auth()->user()->getRole()->id)
+        {
+            case 1: return true; break;
+            case 2: $allowedSessions =TrainingSession::join('gyms','training_sessions.gym_id','gyms.id')
+                ->join('cities','gyms.city_id','cities.id')->where('cities.id',auth()->user()->city_id)
+                ->select('training_sessions.*')->get();
+                foreach($allowedSessions as $session){
+                        if($id==$session->id){
+                            return true;
+                        }
+                    }
+                break;
+            case 3: $allowedSessions =TrainingSession::join('gyms','training_sessions.gym_id','gyms.id')
+                ->where('gyms.id',auth()->user()->gym_id)->select('training_sessions.*')->get();
+                  foreach($allowedSessions as $session){
+                      if($id==$session-id){
+                          return true;
+                      }
+
+                  }
+                break;
+        }
+        return false;
+
     }
 
 }
