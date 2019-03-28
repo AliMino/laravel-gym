@@ -14,6 +14,8 @@
             <th>ID</th>
             <th>City Name</th>
             <th>Country Name</th>
+            <th>Edit City</th>
+            <th>Delete City</th>
         </thead>
         <tbody>
             
@@ -36,7 +38,11 @@
             "serverSide": true,
             "ajax":"/cities/datatable",
             "type":"get",
-            "columns": [ { "data": "id" }, { "data": "name" }, { "data": "countryName" } ]
+            "columns": [ { "data": "id" }, { "data": "name" }, { "data": "countryName" }, {
+                    mRender: function (data, type, row) {
+                        return '<a href="/cities/'+row.id+'/edit" class="table-edit" data-id="' + row.id + '"><button type="button" class="btn btn-block btn-warning">Edit</button></a>'
+                    }
+                } ]
         });
     });
     </script>

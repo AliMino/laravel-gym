@@ -23,12 +23,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index() {
         $this->manageRoles();
-        // dd (auth()->user()->role()->name);
         return view('home');
+        // return view('cities.index');
     }
+
     private function getPermission(string $name) {
         $permission = Permission::where(['name' => $name])->first();
         if($permission === null) {
@@ -36,6 +36,7 @@ class HomeController extends Controller
         }
         return $permission;
     }
+
     private function getRole(string $name) {
         $role = Role::where(['name' => $name])->first();
         if($role === null) {
@@ -43,6 +44,7 @@ class HomeController extends Controller
         }
         return $role;
     }
+
     // roles-permissions:
     //          'admin': 'manage city managers', 'manage gym managers', 'manage users'
     //          'city manager'
@@ -70,11 +72,22 @@ class HomeController extends Controller
         $adminRole->givePermissionTo($manageCoachesPermission);
         $adminRole->givePermissionTo($manageAttendancePermission);
         $adminRole->givePermissionTo($manageRevenuePermission);
-        
-        if(auth()->user()->email === "admin@admin.com") {
+
+        $cityManagerRole->givePermissionTo($manageGymManagersPermission);
+        $cityManagerRole->givePermissionTo($manageUsersPermission);
+        $cityManagerRole->givePermissionTo($manageGymsPermission);
+        $cityManagerRole->givePermissionTo($manageCoachesPermission);
+        $cityManagerRole->givePermissionTo($manageAttendancePermission);
+        $cityManagerRole->givePermissionTo($manageRevenuePermission);
+
+        $gymManagerRole->givePermissionTo($manageUsersPermission);
+        $gymManagerRole->givePermissionTo($manageGymsPermission);
+        $gymManagerRole->givePermissionTo($manageCoachesPermission);
+        $gymManagerRole->givePermissionTo($manageAttendancePermission);
+        $gymManagerRole->givePermissionTo($manageRevenuePermission);
+
+        if(auth()->user()->email === "admin@admin.com" || auth()->user()->email === "admin2@admin.com") {
             auth()->user()->assignRole('admin');
         }
-        // return DB::table('roles')->join('role_has_permissions', 'role_id', '=', 3)->get();
-
     }
 }
