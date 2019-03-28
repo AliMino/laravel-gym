@@ -98,9 +98,6 @@
                         </li>
                     @else
                         <li>
-                            <h4>{{auth()->user()->name}}</h4>
-                        </li>
-                        <li>
                             <form method="POST" action="/logout">
                                 @csrf
                                 <input type="submit" value="logout" class="btn btn-dark">
@@ -145,7 +142,7 @@
                 @endif
 
                 @if(auth()->user() && auth()->user()->can('manage gym managers'))
-                <li class="active treeview">
+                <li class="treeview">
                     <a href="#">
                         <i class="fas fa-user-secret"></i>
                         <span>Gym Managers</span>
