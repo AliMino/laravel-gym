@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\RegisterAuthRequest;
 use App\Member;
 use App\Notifications\MailNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,8 @@ class AuthController extends Controller
 
         $id = Auth::user()->id;
         $currentuser = Member::find($id);
+        $currentuser->last_login=Carbon::now()->toDateString();
+        $currentuser->save();
 
         return response()->json([
             'success' => true,
@@ -60,10 +63,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-
         $token = JWTAuth::getToken();
-
         JWTAuth::invalidate($token);
+
         return response()->json([
             'success' => true,
             'message' => 'User logged out successfully'
