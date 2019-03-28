@@ -103,9 +103,14 @@ class GymManagerController extends Controller
      */
     public function destroy($user)
     {
-        $user->delete();
+        dd($user);
+        /*$gymmanager = User::find($user)->delete();
+        //$gymmanager->delete();
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);*/
 
-        return redirect()->route('gymmanagers.index');
+        //return redirect()->route('gymmanagers.index');
     }
 
     public function ban( $user)

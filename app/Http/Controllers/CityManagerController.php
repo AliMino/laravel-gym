@@ -110,7 +110,6 @@ class CityManagerController extends Controller
      */
     public function destroy( $user)
     {
-        dd($user);
         $user->delete();
 
         return redirect()->route('citymanagers.index');
