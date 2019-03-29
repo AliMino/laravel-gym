@@ -14,7 +14,7 @@
         @endif
 
         <a href="{{route('citymanagers.index')}}">
-            <button class="btn btn-primary">View all Cities Managers</button>
+            <button class="btn btn-primary">View all City managers</button>
         </a>
         <form action="{{route('citymanagers.store')}}" method="POST">
             @csrf
