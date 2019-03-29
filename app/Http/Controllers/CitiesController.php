@@ -30,6 +30,7 @@ class CitiesController extends Controller
     }
 
     public function index() {
+
         return view('cities.index', []);
     }
 
@@ -44,10 +45,15 @@ class CitiesController extends Controller
         return redirect()->route('cities.index');
     }
 
+    public function destroy($id) {
+        $coach = City::find($id);
+        $coach->delete();
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+    }
+
     public function data_table(){
-        return datatables(City::all())
-        ->addColumn('countryName', function(City $city) {
-            return Country::where("id", "=", $city->country_id)->first()->name;
-        })->toJson();
+        return datatables()->of(City::with('country'))->toJson();
     }
 }
