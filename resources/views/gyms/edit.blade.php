@@ -29,19 +29,18 @@
             </div>
 
 
-            <div class="form-group">
-                <label for="exampleInputPassword1">Manager Id</label>
-                <select class="form-control" name="user_id">              
-                        <option value="{{isset($gym->gym_manager_id)?$gym->gym_manager_id:0}}">{{isset($gym->gym_manager_id)?$gym->gym_manager_id:"Not Found"}}</option>                
-                </select>
-            </div>
+            
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     @else
         <div style="margin-left:30%;margin-top:20px;">
             <h2>You don't have the premission to manage gyms</h2>
+            @if(auth()->user() == null)
             <a href="{{url('login')}}">click here to login</a>
+            @else
+            <h4>this page only available for gym managers</h4>
+            @endif
         </div>
     @endif
 @endsection
