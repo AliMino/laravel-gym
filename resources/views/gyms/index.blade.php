@@ -1,37 +1,43 @@
 @extends('layouts.base')
 @section('content')
-<section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Gyms Table</h3><br>
-                    <a href="{{route('gyms.create')}}" style="margin-top: 10px;" class="btn btn-success">Add New Gym</a>
-                </div>
-                <div class="box-body">
-                    <table id="example" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">City</th>
-      <!-- <th scope="col">Gym Manager Name</th> -->
-      <th scope="col">Created at</th>
-      <th scope="col">Cover Photo</th>          
-    </tr>
-  </thead>
-</table>
-</div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
 
-</section>
-        <!-- /.content -->
+    @if(auth()->user() && auth()->user()->can('manage gyms'))
+        <section class="content">
+            <div class="row">
+                <a href="{{route('gyms.create')}}">
+                    <button class="btn btn-primary">Add New Gym</button>
+                </a>
+                <div class="col-xs-12">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Gyms Table</h3><br>
+                            <a href="{{route('gyms.create')}}" style="margin-top: 10px;" class="btn btn-success">Add New Gym</a>
+                        </div>
+                        <div class="box-body">
+                            <table id="example" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">City</th>
+                                        <!-- <th scope="col">Gym Manager Name</th> -->
+                                        <th scope="col">Created at</th>
+                                        <th scope="col">Cover Photo</th>          
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @else
+        <div style="margin-left:30%;margin-top:20px;">
+            <h2>You don't have the premission to manage gyms</h2>
+            <a href="{{url('login')}}">click here to login</a>
+        </div>
+    @endif
+
   @endsection
   @section('scripts')
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

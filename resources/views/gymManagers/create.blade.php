@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('content')
 
-    @if(auth()->user() && auth()->user()->can('manage city managers'))
+    @if(auth()->user() && auth()->user()->can('manage gym managers'))
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
