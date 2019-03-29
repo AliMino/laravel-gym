@@ -1,16 +1,18 @@
 @extends('layouts.base')
 @section('content')
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <a href="{{route('gyms.index')}}">
+        <button class="btn btn-primary">View All Gyms</button>
+    </a>
     <form action="{{route('gyms.store')}}" method="POST">
         @csrf
         <div class="form-group">

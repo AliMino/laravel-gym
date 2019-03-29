@@ -13,4 +13,7 @@ class city extends Model
     public function country() {
         return $this->belongsTo("App\Country");
     }
+    public function manager() {
+        return $this->belongsTo("App\User");
+    }
 }
