@@ -46,8 +46,8 @@ class CitiesController extends Controller
     }
 
     public function destroy($id) {
-        $coach = City::find($id);
-        $coach->delete();
+        $city = City::find($id);
+        $city->delete();
         return response()->json([
             'success' => 'Record deleted successfully!'
         ]);
