@@ -57,7 +57,7 @@ Route::delete('/sessions/{id}','TrainingSession\TrainingSessionController@destro
 
 // users
 Route::get('/users', 'UsersController@index')->name('users.index');
-
+Route::get('/users/{user}','UsersController@show')->name('users.show');
 
 // Coaches
 Route::resource('coaches','Coach\CoachController');

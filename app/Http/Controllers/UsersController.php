@@ -12,4 +12,11 @@ class UsersController extends Controller
             'users' => User::all(),
         ]);
     }
+
+    public function show( $user)
+    {
+        return view('users.show',[
+            'user'=>\Auth::user(),
+        ]);
+    }
 }

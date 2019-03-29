@@ -119,11 +119,13 @@
                 </div>
                 <div class="pull-left info">
                     <p>Welcome
-                        @if(auth()->user() !== null)
-                            {{auth()->user()->name}}
-                        @else
-                            Guest
-                        @endif
+                        <a href="{{route('users.show',\Auth::user()->id)}}">
+                            @if(auth()->user() !== null)
+                                {{auth()->user()->name}}
+                            @else
+                                Guest
+                            @endif
+                        </a>
                     </p>
                 </div>
             </div>

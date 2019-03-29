@@ -65,14 +65,6 @@
                         if(!row.banned_at)
                             return '<center><a href="/ban/'+row.id+'" class="btn btn-success" title="unbanned user"><i class="glyphicon glyphicon-ok-circle"></i></a></center> '
                         else
-<<<<<<< HEAD
-                            return '<center><a href="/unban/'+row.id+'"  class="btn btn-success" title="unban"><i class="glyphicon glyphicon-ok-circle"></i></a></center>'
-                    }   
-                },
-                ],
-            });
-        });
-=======
                             return '<center><a href="/unban/'+row.id+'" class="btn btn-danger" title="banned user"><i class="glyphicon glyphicon-ban-circle"></i></a></center> '
                             
                     }   
@@ -104,6 +96,5 @@
     });
 
     } );
->>>>>>> 07f6d6c2f0d6c953ff36a54737dd2d226fc29354
     </script>
 @endsection
