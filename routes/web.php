@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-    // added by ali kamel for testing & demo purposes
-    // demo of charts
-    // return view('users.index');
-});
+
 
 Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+        // added by ali kamel for testing & demo purposes
+        // demo of charts
+        // return view('users.index');
+    });
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -128,3 +131,9 @@ Route::delete('/gymmanagers/{manager}','GymManagerController@destroy')->name('gy
 Route::get('/gymmanagersdata', 'GymManagerController@getdata')->name('gymmanagers.data');
 Route::get('/ban/{manager}','GymManagerController@ban')->name('gymmanagers.ban');
 Route::get('/unban/{manager}','GymManagerController@unban')->name('gymmanagers.unban');
+
+});
+
+
+
+

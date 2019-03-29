@@ -28,7 +28,7 @@
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Attendance Table</h3><br>                    
+                        <h3 class="box-title">Purchased Packages Table</h3><br>
                     </div>
                     <div class="box-body">
                         <table id="example" class="table table-bordered table-striped">
@@ -58,7 +58,7 @@
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     url: '/revenue/datatable',
                     dataType : 'json',
-                    type: 'get',            
+                    type: 'get',
                 }, columns: [ { data: 'member_id' }, { data: 'package_id'}, { data: 'paid_price'}, { data: 'gym_id' } ],
                     'paging'      : true,
                     'lengthChange': true,
