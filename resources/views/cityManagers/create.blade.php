@@ -48,7 +48,7 @@
                 <label for="exampleInputPassword1">City</label>
                 <select class="form-control" name="city_id">
                     @foreach($cities as $city)
-                    <option value="{{$city->id}}">{{$city->name}} - {{$city->country->name}}</option>
+                    <option value="{{$city->id}}">{{$city->name}} </option>
                     @endforeach
                 </select>
                 {{-- {{$city->country->name}} --}}
