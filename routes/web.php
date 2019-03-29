@@ -70,7 +70,6 @@ Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
 Route::post('/cities','CitiesController@store')->name('cities.store');
 Route::get('/cities/{city}/edit', 'CitiesController@edit')->name('cities.edit');
 Route::put('/cities', 'CitiesController@update')->name('cities.update');
-Route::delete('/cities/{id}','CitiesController@destroy')->name('cities.destroy');
 
 //attendance
 Route::get('/attendance','Attendance\AttendanceController@index')->name('attendance.index');
