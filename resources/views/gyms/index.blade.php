@@ -17,7 +17,10 @@
       <th scope="col">City</th>
       <!-- <th scope="col">Gym Manager Name</th> -->
       <th scope="col">Created at</th>
-      <th scope="col">Cover Photo</th>          
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+
     </tr>
   </thead>
 </table>
@@ -37,27 +40,21 @@
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
         $('#example').DataTable( {
-            serverSide: true,
-            ajax: {
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: '/data_gyms',
-                dataType : 'json',
-                type: 'get',            
-            },
-            columns: [
-                { data: 'name'},                                               
-                { data: 'city.name'},
-                
-                { data: 'created_at'},                
+            "processing": true,
+            "serverSide": true,
+            "ajax":"/data_gyms",
+            "type":"get",
+            "columns": [
+                { "data": 'name'},
+                { "data": 'city.name'},
+                { "data": 'created_at'},
                 //image
                 {
                     mRender: function (data, type, row) {
                         return '<img src="'+row.image+'" height="50" width="100">'
                     }
                 },
-                
+
                 /* EDIT */ {
                     mRender: function (data, type, row) {
                         return '<a href="/gyms/'+row.id+'/edit" class="table-edit btn btn-warning" data-id="' + row.id + '">EDIT</a>'
@@ -98,6 +95,5 @@
             return false;
         }
     });
-        });
     </script>
 @endsection

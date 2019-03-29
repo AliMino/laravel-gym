@@ -16,21 +16,19 @@ class StoreController extends Controller
         $path = $request->file('public/img');
         Gym::create(request()->all());
         return redirect()->route('gyms.index');
-        
+
     }
 
     public function index(){
-        $gyms=Gym::all();        
+        $gyms=Gym::all();
 
-        return view ('gyms.index',[
-            'gyms'=>$gyms,            
-        ]);
+        return view ('gyms.index');
     }
 
-    
+
 
     public function data_gyms(){
         return datatables()->of(Gym::with('city'))->toJson();
-    }  
-    
+    }
+
 }

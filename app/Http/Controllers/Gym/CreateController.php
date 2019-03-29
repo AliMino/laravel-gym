@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Gym;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Gym;
+use App\City;
+use App\User;
 
 class CreateController extends Controller
 {
     public function create() {
-        $gyms=Gym::all();
         return view('gyms.create' ,[
-            'gyms'=>$gyms,
-        ]); 
+            'cities'=>City::all(),
+            'users'=>User::where('id','>',1)->get()
+        ]);
     }
 }
