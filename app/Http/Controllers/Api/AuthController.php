@@ -6,6 +6,7 @@ use App\Http\Requests\RegisterAuthRequest;
 use App\Member;
 use App\Notifications\ActivateMember;
 use App\Notifications\MailNotification;
+use App\Notifications\NotifyMemberActive;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -77,7 +78,7 @@ class AuthController extends Controller
         $member->activate = true;
         $member->activate_token = '';
         $member->save();
-        $member->notify(new MailNotification());
+        $member->notify(new NotifyMemberActive());
         return $member;
     }
 
