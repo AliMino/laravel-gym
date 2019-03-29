@@ -20,7 +20,9 @@
                                         <th scope="col">City</th>
                                         <!-- <th scope="col">Gym Manager Name</th> -->
                                         <th scope="col">Created at</th>
-                                        <th scope="col">Cover Photo</th>          
+                                        <th scope="col">Cover Photo</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -48,7 +50,7 @@
                 dataType : 'json',
                 type: 'get',            
             },
-            columns: [ { data: 'name'}, { data: 'city.name'}, { data: 'created_at'}, {
+            columns: [ { data: 'name'}, { data: 'city'}, { data: 'timestamp'}, {
                     //image
                     mRender: function (data, type, row) {
                         return '<img src="'+row.image+'" height="50" width="100">'

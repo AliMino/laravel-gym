@@ -123,7 +123,5 @@ class CityManagerController extends Controller
         ->addColumn('countryName', function(User $user) {
             return Country::where("id", "=", $user->city->country_id)->first()->name;
         })->toJson();
-        // $users=User::role('city manager')->get();
-        // return datatables()->of($users)->toJson();
     }
 }
