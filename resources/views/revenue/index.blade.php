@@ -3,19 +3,21 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3>Total Revenue</h3>
-            @if(auth()->user()->getRole()->name == "admin")
-                <h4>for whole system</h4>
-            @elseif(auth()->user()->getRole()->name == "city manager")
-                <h4>for city '{{auth()->user()->city()->name}}'</h4>
-            @elseif(auth()->user()->getRole()->name == "city manager")
-                <h4>for gym '{{auth()->user()->gym()->name}}'</h4>
-            @endif
+            <I>
+                <h3>Total Revenue</h3>
+                @if(auth()->user()->getRole()->name == "admin")
+                    <h4>for whole system</h4>
+                @elseif(auth()->user()->getRole()->name == "city manager")
+                    <h4>for city '{{auth()->user()->city()->name}}'</h4>
+                @elseif(auth()->user()->getRole()->name == "city manager")
+                    <h4>for gym '{{auth()->user()->gym()->name}}'</h4>
+                @endif
+            </I>
         </div>
         <div class="card-body">
           <blockquote class="blockquote mb-0">
-                <h2>{{$totalSum}}</h2>
-            <footer class="blockquote-footer">$USD</footer>
+                <I><h2>{{$totalSum}}</h2></I>
+            <footer class="blockquote-footer"><I>$USD</I></footer>
           </blockquote>
         </div>
     </div>
@@ -49,20 +51,22 @@
 @section('scripts')
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
-        $('#example').DataTable( {
-            serverSide: true,
-            ajax: {
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                url: '/revenue/datatable',
-                dataType : 'json',
-                type: 'get',            
-            }, columns: [ { data: 'member_id' }, { data: 'package_id'}, { data: 'paid_price'}, { data: 'gym_id' } ],
-                'paging'      : true,
-                'lengthChange': true,
-                'searching'   : true,
-                'ordering'    : true,
-                'info'        : true,
-                'autoWidth'   : true,
+        $(document).ready(function(){
+            $('#example').DataTable({
+                serverSide: true,
+                ajax: {
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    url: '/revenue/datatable',
+                    dataType : 'json',
+                    type: 'get',            
+                }, columns: [ { data: 'member_id' }, { data: 'package_id'}, { data: 'paid_price'}, { data: 'gym_id' } ],
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : true,
+                    'autoWidth'   : true,
+            });
         });
     </script>
 @endsection
