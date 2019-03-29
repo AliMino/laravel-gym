@@ -53,11 +53,11 @@ Route::get('/sessions','TrainingSession\TrainingSessionController@index')->name(
 Route::get('sessionsdata', 'TrainingSession\TrainingSessionController@getdata')->name('sessions.data');
 Route::delete('/sessions/{id}','TrainingSession\TrainingSessionController@destroy')->name('sessions.destroy');
 
-
-
 // users
 Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/users/{user}','UsersController@show')->name('users.show');
+Route::get('/users/{user}/edit','UsersController@edit')->name('users.edit');
+Route::put('/users/{user}','UsersController@update')->name('users.update');
 
 // Coaches
 Route::resource('coaches','Coach\CoachController');

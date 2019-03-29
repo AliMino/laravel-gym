@@ -2,6 +2,10 @@
 @section('content')
 
   @if(auth()->user())
+
+  <a href="{{route('users.edit',$user->id)}}">
+    <button class="btn btn-primary">Edit</button>
+  </a>
     <div class="box box-primary">
       <div class="box-body box-profile">
         <img class="profile-user-img img-responsive img-circle" src="{{ URL::to('/') }}/img/avatar.png" alt="User profile picture">

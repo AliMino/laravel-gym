@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\City;
+use App\Gym;
+use App\Country;
+use App\Http\Requests\UpdateManagerRequest;
 
 class UsersController extends Controller
 {
@@ -18,5 +22,28 @@ class UsersController extends Controller
         return view('users.show',[
             'user'=>\Auth::user(),
         ]);
+    }
+
+    public function edit($user)
+    {
+        return view('users.edit',[
+            'user'=>\Auth::user(),
+            'cities'=>City::all(),
+            'gyms'=>Gym::all(),
+        ]);
+    }
+
+    
+    public function update(UpdateManagerRequest $request, $user)
+    {
+        User::find($user)->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'national_id'=>$request->national_id,
+            'image'=>$request->avatar_img,
+            'city_id'=>$request->city_id,
+            'gym_id'=>$request->gym_id,
+        ]);
+        return redirect()->route('users.show',$user);
     }
 }
