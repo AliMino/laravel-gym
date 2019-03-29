@@ -9,6 +9,7 @@ class TrainingPackage extends Model
     protected $fillable = [
         'no_of_sessions',
         'price_cent',
+        'name',
     ];
 
     public function gyms(){
