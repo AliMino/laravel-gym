@@ -23,6 +23,7 @@
                         <th>Email</th>
                         <th>National ID</th>
                         <th>City</th>
+                        <th>Country</th>
                         <th><center>Show</center></th>
                         <th><center>Edit</center></th>
                         <th><center>Delete</center></th>
@@ -61,7 +62,8 @@
                 { "data": "name" },
                 { "data": "email" },
                 { "data": "national_id" },
-                { "data": "city_id" },
+                { "data": "city.name" },
+                { "data": "countryName" },
                 {
                     mRender: function (data, type, row) {
                         return '<center><a href="/citymanagers/'+row.id+'"  class="btn btn-info"><i class="glyphicon glyphicon-chevron-right"></i></a></center>'

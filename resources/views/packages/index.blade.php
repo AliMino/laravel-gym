@@ -2,27 +2,29 @@
 @section('content')
 <section class="content">
     <div class="row">
-        <div class="col-xs-12">            
+        <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Packages Table</h3><br>
                     <a href="{{route('packages.create')}}" style="margin-top: 10px;" class="btn btn-success">Create Package</a>
-                </div>                
+                </div>
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                         <thead>
-                        <tr>                            
-                            <th scope="col">ID</th> 
-                            <th scope="col">No of Sessions</th>                                                                              
-                            <th scope="col">Price</th>                                                                                   
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">No of Sessions</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
                         </tr>
                         </thead>
                     </table>
-                </div>                
-            </div>            
-        </div>        
-    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="deletepopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -36,7 +38,6 @@
                     <div class="modal-footer">
                         <div>
                             <div id="csrf_value"  hidden >@csrf</div>
-                            {{--@method('DELETE')--}}
                             <button type="button" row_delete="" id="delete_item"  class="btn btn-danger" data-dismiss="modal">Yes</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
                         </div>
@@ -45,21 +46,22 @@
                 </div>
             </div>
         </div>
-    
-</section>        
+
+</section>
 @endsection
-@section('scripts')    
+@section('scripts')
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
     $(document).ready( function () {
-        $('#example').DataTable( {          
+        $('#example').DataTable( {
+            "processing": true,
             "serverSide": true,
             "ajax":"/data_packages",
             "type":"get",
             "columns": [
                 { "data": "name" },
                 { "data": "no_of_sessions" },
-                { "data": "price_cent" },                
+                { "data": "price_cent" },
                 {
                     mRender: function (data, type, row) {
                         return '<a href="/packages/'+row.id+'/edit" class="table-edit" data-id="' + row.id + '"><button type="button" class="btn btn-block btn-success btn-flat">Edit</button></a>'
@@ -84,14 +86,12 @@
                     url: '/packages/'+id,
                     type: 'DELETE',
                     success: function (data) {
-                        console.log('success');
-                        console.log(data);
                         var table = $('#example').DataTable();
                         table.ajax.reload();
                     },
                     error: function (response) {
                         alert(' error');
-                        console.log(response);
+
                     }
                 });
             });

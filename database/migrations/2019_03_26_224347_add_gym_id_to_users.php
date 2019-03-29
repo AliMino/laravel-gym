@@ -14,7 +14,7 @@ class AddGymIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('gym_id')->nullable();
+            $table->unsignedBigInteger('gym_id')->default(0);
         });
     }
 

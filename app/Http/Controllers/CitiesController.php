@@ -23,14 +23,14 @@ class CitiesController extends Controller
     public function store(CreateCityRequest $request) {
         City::create($request->all());
         
-        return view('cities.create', [
+        return view('cities.index', [
             'countries' => Country::where('id', '<', 77)->get(),
             'last_selected_country' => Country::where('id', '=', $request->country_id)->first(),
-            // 'cities' => City::where('country_id', '=', $request->country_id)->get()
         ]);
     }
 
     public function index() {
+
         return view('cities.index', []);
     }
 
@@ -41,16 +41,19 @@ class CitiesController extends Controller
     }
 
     public function update(City $city, UpdateCityRequest $request) {
-        // dd($request);
-        // dd(City::where("id", "=", 1)->first());
         City::where("id", "=", 1)->first()->update($request->all());
         return redirect()->route('cities.index');
     }
 
+    public function destroy($id) {
+        $coach = City::find($id);
+        $coach->delete();
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+    }
+
     public function data_table(){
-        return datatables(City::all())
-        ->addColumn('countryName', function(City $city) {
-            return Country::where("id", "=", $city->country_id)->first()->name;
-        })->toJson();
+        return datatables()->of(City::with('country'))->toJson();
     }
 }

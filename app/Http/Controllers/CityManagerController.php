@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use App\City;
+use App\Country;
 use App\Http\Requests\StoreManagerRequest;
 use App\Http\Requests\UpdateManagerRequest;
 
@@ -44,6 +45,7 @@ class CityManagerController extends Controller
      */
     public function store(StoreManagerRequest $request)
     {
+        // dd($request);
         $user=User::create($request->all());
         $user->assignRole('city manager');
         $request->validate([
@@ -116,7 +118,9 @@ class CityManagerController extends Controller
     }
 
     public function getdata(){
-        $users=User::role('city manager')->get();
-        return datatables()->of($users)->toJson();
+        return datatables(User::where("city_id", ">", 0)->with('city'))
+        ->addColumn('countryName', function(User $user) {
+            return Country::where("id", "=", $user->city->country_id)->first()->name;
+        })->toJson();
     }
 }

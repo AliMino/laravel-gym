@@ -57,13 +57,15 @@ class TrainingsessionController extends Controller
         $Current_day = Carbon::now()->setTimezone('Africa/Cairo');
         $current_date = Carbon::now()->toDateString();
         $current_time = Carbon::now()->toTimeString();
+        $session_id=$session;
         $session = TrainingSession::find($session);
+
         $Session_date = Carbon::parse($session->start_at);
         if($Current_day->isSameDay($Session_date))
         {
             $attendance = new Attendance();
             $attendance->member_id = $id;
-            $attendance->session_id = $id;
+            $attendance->session_id = $session_id;
             $attendance->attendance_date = $current_date;
             $attendance->attendance_time = $current_time;
             $attendance->save();

@@ -37,7 +37,6 @@ class CoachController extends Controller
         return response()->json([
             'success' => 'Record deleted successfully!'
         ]);
-     //return redirect()->route('coaches.index');
     }
 
     public function getdata() {

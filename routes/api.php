@@ -20,6 +20,7 @@ Auth::routes(['verify' => true]);
 
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
+Route::get('auth/signup/activate/{token}', 'Api\AuthController@ActivateMember');
 
 
 Route::middleware(['auth:api', 'VerfiedRoutes'])->group(function () {
@@ -28,7 +29,7 @@ Route::middleware(['auth:api', 'VerfiedRoutes'])->group(function () {
     Route::get('mysessions/', 'Api\TrainingsessionController@ShowRemainingSessions');
     Route::get('history/', 'Api\AttendanceController@ShowHistory');
     Route::post('sessions/{session}/attend', 'Api\TrainingsessionController@AttendSession');
-    Route::get('auth/signup/activate/{token}', 'Api\AuthController@ActivateMember');
+
 
 
 

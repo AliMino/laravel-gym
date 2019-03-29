@@ -14,7 +14,7 @@ class AddCityIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('city_id')->default(0);
         });
     }
 

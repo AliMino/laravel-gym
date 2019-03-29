@@ -11,12 +11,17 @@ use App\Http\Requests\UpdateTrainingPackageRequest;
 class EditController extends Controller
 {
     public function edit(TrainingPackage $package){
-        return view('packages.edit',[
-            'package'=>$package,
-        ]);
+        switch(auth()->user()->getRole()->id)
+        {
+            case 1:return view('packages.edit',['package'=>$package]); break;
+            case 2:
+            case 3: return redirect()->route('payment.create');
+        }
+
     }
 
     public function update(UpdateTrainingPackageRequest $request,TrainingPackage $package){
+        $request->validated();
         $package->update($request->all());
         $package->save();
         return redirect()->route("packages.index");

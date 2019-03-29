@@ -35,17 +35,8 @@
                     <th>Delete</th>
                   </tr>
                   </thead>
-                  <tbody>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                    <th>Name</th>
-                    <th>starts at</th>
-                    <th>ends at</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    </tr>
-                    </tfoot>
+
+
                   </table>
                 </div>
                 <!-- /.box-body -->

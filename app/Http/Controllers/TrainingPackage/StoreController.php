@@ -8,13 +8,19 @@ use App\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
-    public function store() {        
+    public function store() {
         TrainingPackage::create(request()->all());
         return redirect()->route('packages.index');
     }
 
     public function index(){
-        return view('packages.index');
+        switch(auth()->user()->getRole()->id)
+        {
+            case 1: return view('packages.index'); break;
+            case 2:
+            case 3: return redirect()->route('payment.create');
+        }
+
     }
 
     /**
@@ -26,5 +32,5 @@ class StoreController extends Controller
     public function data_packages(){
         return datatables()->of(TrainingPackage::with('gyms'))->toJson();
     }
-    
+
 }
