@@ -37,11 +37,6 @@
                 <hr>
             </div>
 
-            <div class="box-body">
-            <strong><i class="glyphicon glyphicon-globe"></i> Country Name</strong>
-            <p class="text-muted">{{$user->city->country->name}} - {{$user->city->country->full_name}}</p>
-            <hr>
-            </div>
         @endif
 
         @if($user->roles->first()->name=="gym manager")

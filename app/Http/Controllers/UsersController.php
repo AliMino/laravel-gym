@@ -6,8 +6,6 @@ use App\User;
 use App\City;
 use App\Gym;
 use Illuminate\Http\Request;
-use App\City;
-use App\Gym;
 use App\Country;
 use App\Http\Requests\UpdateManagerRequest;
 
