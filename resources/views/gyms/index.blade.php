@@ -18,7 +18,6 @@
                                     <tr>
                                         <th scope="col">Name</th>
                                         <th scope="col">City</th>
-                                        <!-- <th scope="col">Gym Manager Name</th> -->
                                         <th scope="col">Created at</th>
                                         <th scope="col">Cover Photo</th>
                                         <th scope="col">Edit</th>
@@ -35,7 +34,6 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">City</th>
-      <!-- <th scope="col">Gym Manager Name</th> -->
       <th scope="col">Created at</th>
       <th scope="col">Image</th>
       <th scope="col">Edit</th>
@@ -59,7 +57,8 @@
   @section('scripts')
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
-        $('#example').DataTable( {
+   $(document).ready( function () {
+          $('#example').DataTable( {
             serverSide: true,
             ajax: {
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -90,6 +89,8 @@
             'ordering'    : true,
             'info'        : true,
             'autoWidth'   : true,
+        });
+
         });
         $(document).on('click', '.delete', function(){
         var id = $(this).attr('id');

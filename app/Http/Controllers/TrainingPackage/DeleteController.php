@@ -14,6 +14,6 @@ class DeleteController extends Controller
         return response()->json([
             'success' => 'Record deleted successfully!'
         ]);
-        //return redirect()->route("index");
+
     }
 }
