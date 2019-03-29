@@ -12,7 +12,7 @@
             </div>
         @endif
         
-        <a href="{{route('citymanagers.index')}}">
+        <a href="{{route('gymmanagers.index')}}">
             <button class="btn btn-primary">View all Gyms Managers</button>
         </a>
         <form action="{{route('gymmanagers.store')}}" method="POST">
