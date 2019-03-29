@@ -52,8 +52,12 @@
         </form>
     @else
         <div style="margin-left:30%;margin-top:20px;">
-            <h2>You don't have the premission to manage gym manager</h2>
-            <a href="{{url('login')}}">click here to login</a>
+            <h2>You don't have the premission to manage gym managers</h2>
+            @if(auth()->user() == null)
+                <a href="{{url('login')}}">click here to login</a>
+            @else
+                <h4>this page only available for admins & city managers</h4>
+            @endif
         </div>
     @endif
 

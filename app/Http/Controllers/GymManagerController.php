@@ -29,9 +29,11 @@ class GymManagerController extends Controller
      */
     public function create()
     {
-        return view('gymManagers.create',[
-            'gyms'=>Gym::all()
-        ]);
+        if(auth()->user()->getRole()->name == "admin") {
+            return view('gymManagers.create',[ 'gyms'=>Gym::all() ]);
+        } else if(auth()->user()->getRole()->name == "city manager") {
+            return view('gymManagers.create',[ 'gyms'=>Gym::where("city_id", "=", auth()->user()->city_id)->get() ]);
+        }
     }
 
     /**
