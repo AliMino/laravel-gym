@@ -23,4 +23,7 @@ class TrainingPackage extends Model
     public function setPackagePriceAttribute($dollars){
         $this->attributes['price_cents'] = $dollars * 100 ;
     }
+    public function getPrice() {
+        return $this->price_cent / 100;
+    }
 }

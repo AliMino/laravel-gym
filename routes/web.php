@@ -65,7 +65,7 @@ Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
 // cities
 Route::get('/cities', 'CitiesController@index')->name('cities.index');
-Route::get('/cities/datatable', 'CitiesController@data_table')->name('cities.datatable');
+Route::get('/datatable', 'CitiesController@data_table')->name('cities.datatable');
 Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
 Route::post('/cities','CitiesController@store')->name('cities.store');
 Route::get('/cities/{city}/edit', 'CitiesController@edit')->name('cities.edit');
@@ -87,6 +87,8 @@ Route::get('/data_member','Member\MembersController@data_member');
 
 
 
+Route::get('/revenue','RevenueController@index')->name('revenue.index');
+Route::get('/revenue/datatable','RevenueController@dataTable')->name('revenue.datatable');
 
 
 
