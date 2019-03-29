@@ -4,15 +4,13 @@
     @if(auth()->user() && auth()->user()->can('manage gyms'))
         <section class="content">
             <div class="row">
-                <a href="{{route('gyms.create')}}">
-                    <button class="btn btn-primary">Add New Gym</button>
-                </a>
+                
                 <div class="col-xs-12">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Gyms Table</h3><br>
-                            <a href="{{route('gyms.create')}}" style="margin-top: 10px;" class="btn btn-success">Add New Gym</a>
+                            <a href="{{route('gyms.create')}}" style="margin-top: 10px;" class="btn btn-primary">Add New Gym</a>
                         </div>
                         <div class="box-body">
                             <table id="example" class="table table-bordered table-striped">
@@ -45,33 +43,25 @@
         $('#example').DataTable( {
             serverSide: true,
             ajax: {
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 url: '/data_gyms',
                 dataType : 'json',
                 type: 'get',            
             },
-            columns: [
-                { data: 'name'},                                               
-                { data: 'city.name'},
-                
-                { data: 'created_at'},                
-                //image
-                {
+            columns: [ { data: 'name'}, { data: 'city.name'}, { data: 'created_at'}, {
+                    //image
                     mRender: function (data, type, row) {
                         return '<img src="'+row.image+'" height="50" width="100">'
                     }
-                },
-                
-                /* EDIT */ {
+                }, {
+                    /* EDIT */ 
                     mRender: function (data, type, row) {
                         return '<a href="/gyms/'+row.id+'/edit" class="table-edit btn btn-warning" data-id="' + row.id + '">EDIT</a>'
                     }
-                },
-                /* DELETE */ {
+                }, {
+                    /* DELETE */ 
                     mRender: function (data, type, row) {
-                       return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger"> Delete </button></a>'
+                        return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger"> Delete </button></a>'
                     }
                 },
             ],
@@ -81,11 +71,10 @@
             'ordering'    : true,
             'info'        : true,
             'autoWidth'   : true,
-        } );
+        });
         $(document).on('click', '.delete', function(){
         var id = $(this).attr('id');
-        if(confirm("Are you sure you want to Delete this Package?"))
-        {
+        if(confirm("Are you sure you want to Delete this Package?")) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -104,6 +93,5 @@
             return false;
         }
     });
-        });
     </script>
 @endsection

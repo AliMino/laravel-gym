@@ -23,20 +23,13 @@
         <div class="form-group">
             <label for="exampleInputPassword1">City</label>
             <select class="form-control" name="city_id">
-                @foreach($gyms as $gym)
-                <option value="{{$gym->city_id}}">{{$gym->city_id}}</option>
+                @foreach($cities as $city)
+                <option value="{{$city->id}}">{{$city->name}} - {{$city->country->name}}</option>
                 @endforeach
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputPassword1">Manager</label>
-            <select class="form-control" name="gym_manager_id">
-                @foreach($gyms as $gym)
-                <option value="{{$gym->gym_manager_id}}">{{$gym->gym_manager_id}}</option>
-                @endforeach
-            </select>
-        </div>
+        
         <div class="form-group">
         <label for="exampleInputImage1">Cover Photo</label>
            <?php             

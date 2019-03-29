@@ -9,7 +9,6 @@ class Gym extends Model
     protected $fillable = [
         'name',
         'city_id',
-        'gym_manager_id',
         'image',
     ];
 
