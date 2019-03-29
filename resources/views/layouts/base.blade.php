@@ -227,7 +227,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage revenue'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('revenue.index')}}">
                         <i class="fas fa-chart-line"></i>
                         <span>Revenue</span>
                     </a>

@@ -14,6 +14,7 @@
                         </div>
                         <div class="box-body">
                             <table id="gymmanagers" class="table table-bordered table-striped">
+                                <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -21,9 +22,9 @@
                                         <th>Email</th>
                                         <th>National ID</th>
                                         <th>GYM</th>
-                                        <th><center>Edit</center></th>
-                                        <th><center>Delete</center></th>
-                                        <th><center>Ban/UnBan</center></th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Ban/UnBan</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -58,7 +59,7 @@
                     }
                 }, {
                     mRender: function (data, type, row) {
-                        return '<center><a href=""  id="delete" row_id="'+row.id+'" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></center>'
+                        return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger btn-flat"> Delete </button></a>'
                     }
                 }, {
                     mRender: function (data, type, row) {
@@ -66,34 +67,35 @@
                             return '<center><a href="/ban/'+row.id+'" class="btn btn-success" title="unbanned user"><i class="glyphicon glyphicon-ok-circle"></i></a></center> '
                         else
                             return '<center><a href="/unban/'+row.id+'" class="btn btn-danger" title="banned user"><i class="glyphicon glyphicon-ban-circle"></i></a></center> '
-                            
-                    }   
+
+                    }
                 },
             ],
         } );
 
-        $(document).on('click', '.delete', function(){
-        var id = $(this).attr('row_id');
-        if(confirm("Are you sure you want to Delete ?"))
-        {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url:"/gymmanagers/"+id,
-                type:'DELETE',
-                success:function(data)
+
+            $(document).on('click', '.delete', function(){
+                var id = $(this).attr('id');
+                if(confirm("Are you sure you want to Delete this manager?"))
                 {
-                    alert("Coach deleted successfully");
-                    $('#gymmanagers').DataTable().ajax.reload();
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url:"/gymmanagers/"+id,
+                        type:'DELETE',
+                        success:function(data)
+                        {
+                            alert("manager deleted successfully");
+                            $('#gymmanagers').DataTable().ajax.reload();
+                        }
+                    })
                 }
-            })
-        }
-        else
-        {
-            return false;
-        }
-    });
+                else
+                {
+                    return false;
+                }
+            });
 
     } );
     </script>

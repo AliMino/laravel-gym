@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-    // added by ali kamel for testing & demo purposes
-    // demo of charts
-    // return view('users.index');
-});
+
 
 Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+        // added by ali kamel for testing & demo purposes
+        // demo of charts
+        // return view('users.index');
+    });
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -65,12 +68,11 @@ Route::get('coachdata', 'Coach\CoachController@getdata')->name('coach.data');
 
 // cities
 Route::get('/cities', 'CitiesController@index')->name('cities.index');
-Route::get('/cities/datatable', 'CitiesController@data_table')->name('cities.datatable');
+Route::get('/datatable', 'CitiesController@data_table')->name('cities.datatable');
 Route::get('/cities/create', 'CitiesController@create')->name('cities.create');
 Route::post('/cities','CitiesController@store')->name('cities.store');
 Route::get('/cities/{city}/edit', 'CitiesController@edit')->name('cities.edit');
 Route::put('/cities', 'CitiesController@update')->name('cities.update');
-Route::delete('/cities/{id}','CitiesController@destroy')->name('cities.destroy');
 
 //attendance
 Route::get('/attendance','Attendance\AttendanceController@index')->name('attendance.index');
@@ -88,6 +90,8 @@ Route::get('/data_member','Member\MembersController@data_member');
 
 
 
+Route::get('/revenue','RevenueController@index')->name('revenue.index');
+Route::get('/revenue/datatable','RevenueController@dataTable')->name('revenue.datatable');
 
 
 
@@ -127,3 +131,9 @@ Route::delete('/gymmanagers/{manager}','GymManagerController@destroy')->name('gy
 Route::get('/gymmanagersdata', 'GymManagerController@getdata')->name('gymmanagers.data');
 Route::get('/ban/{manager}','GymManagerController@ban')->name('gymmanagers.ban');
 Route::get('/unban/{manager}','GymManagerController@unban')->name('gymmanagers.unban');
+
+});
+
+
+
+
