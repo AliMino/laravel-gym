@@ -10,7 +10,7 @@
                 <button class="btn btn-primary">Add new city</button>
             </a>
             <table id="datatable">
-                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <meta name="csrf-token" content="{{csrf_token()}}">
                 <thead>
                     <th>ID</th>
                     <th>City Name</th>
@@ -36,12 +36,12 @@
 @endsection
 @section('scripts')
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquey.datatables.js"></script>
-    <script>    
+    <script>
         $(document).ready(function() {
         $('#datatable').DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax":"/cities/datatable",
+            "ajax":"/datatable",
             "type":"get",
             "columns": [ { "data": "id" }, { "data": "name" }, { "data": "country.name" }, {
                     mRender: function (data, type, row) {
@@ -68,6 +68,10 @@
                         {
                             alert("city deleted successfully");
                             $('#datatable').DataTable().ajax.reload();
+                        },
+                        error:function(data)
+                        {
+                            console.log(data);
                         }
                     })
                 }
@@ -76,7 +80,6 @@
                     return false;
                 }
             });
-
         });
     </script>
     
