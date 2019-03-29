@@ -45,6 +45,8 @@ class StoreController extends Controller
             return datatables(Gym::where("city_id", "=", auth()->user()->city_id))
             ->addColumn('city', function(Gym $gym) {
                 return City::where("id", "=", $gym->city_id)->first()->name;
+            })->addColumn('timestamp', function(Gym $gym) {
+                return $gym->created_at->format('M d Y - h:m:s a');
             })->toJson();
         }
     }  
