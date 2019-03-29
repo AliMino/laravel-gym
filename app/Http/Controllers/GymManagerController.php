@@ -92,7 +92,7 @@ class GymManagerController extends Controller
             'email'=>$request->email,
             'national_id'=>$request->national_id,
             'image'=>$request->avatar_img,
-            'gym_id'=>$request->gym_id,
+            'city_id'=>$request->city_id,
         ]);
         return redirect()->route('gymmanagers.index');
     }
@@ -103,16 +103,14 @@ class GymManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user)
+    public function destroy($id)
     {
-        dd($user);
-        /*$gymmanager = User::find($user)->delete();
-        //$gymmanager->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
+
         return response()->json([
             'success' => 'Record deleted successfully!'
-        ]);*/
-
-        //return redirect()->route('gymmanagers.index');
+        ]);
     }
 
     public function ban( $user)

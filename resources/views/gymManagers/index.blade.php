@@ -54,7 +54,7 @@
                 "type":"get",
                 "columns": [ { "data": "id" }, { "data": "name" }, { "data": "email" }, { "data": "national_id" }, { "data": "gym_id" }, {
                     mRender: function (data, type, row) {
-                        return '<center><a href="/gymmanagers/'+row.id+'/edit"  class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></a></center>'
+                        return '<a href="/gymmanagers/'+row.id+'/edit"  class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></a>'
                     }
                 }, {
                     mRender: function (data, type, row) {
