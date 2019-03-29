@@ -134,7 +134,7 @@
                 
                 @if(auth()->user() && auth()->user()->can('manage city managers'))
                 <li class="treeview">
-                    <a href="{{route('citymanagers.index')}}">
+                    <a href="{{route('citymanagers.index')}}" target="_blank">
                         <i class="fas fa-user-tie"></i>
                         <span>​City Managers</span>
                     </a>

@@ -30,12 +30,7 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputPassword1">Manager</label>
-            <select class="form-control" name="gym_manager_id">
-                @foreach($users as $user)
-                <option value="{{$user->id}}">{{$user->name}}</option>
-                @endforeach
-            </select>
+            
         </div>
         <div class="form-group">
         <label for="exampleInputImage1">Cover Photo</label>
