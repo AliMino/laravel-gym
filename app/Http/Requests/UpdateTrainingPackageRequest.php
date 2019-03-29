@@ -24,7 +24,6 @@ class UpdateTrainingPackageRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'=>"required",
             'price_cent'=>"required|numeric|min:1",
             'no_of_sessions'=>"required|numeric|min:1",
         ];
