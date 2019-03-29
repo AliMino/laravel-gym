@@ -10,7 +10,6 @@ class StoreController extends Controller
 {
     public function store() {
         $request = request();
-        // TrainingPackage::create(request()->all());
         TrainingPackage::create([
             "name" => $request->name,
             "no_of_sessions" => $request->no_of_sessions,

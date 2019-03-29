@@ -88,7 +88,7 @@ Route::get('/data_member','Member\MembersController@data_member');
 
 
 
-Route::get('/revenue','RevenueController@index')->name('members.index');
+Route::get('/revenue','RevenueController@index')->name('revenue.index');
 Route::get('/revenue/datatable','RevenueController@dataTable')->name('revenue.datatable');
 
 
