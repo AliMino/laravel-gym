@@ -11,7 +11,7 @@ class CreateController extends Controller
 {
     public function create() {
         return view('packages.create',[
-            'packages'=>TrainingPackage::all(),
+            'gyms'=>Gym::all(),
         ]);
     }
 }

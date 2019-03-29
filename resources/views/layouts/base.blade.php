@@ -143,7 +143,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage gym managers'))
                 <li class="treeview">
-                    <a href="#">
+                    <a href="{{route('gymmanagers.index')}}">
                         <i class="fas fa-user-secret"></i>
                         <span>Gym Managers</span>
                     </a>

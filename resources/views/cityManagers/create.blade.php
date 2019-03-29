@@ -14,7 +14,7 @@
         @endif
 
         <a href="{{route('citymanagers.index')}}">
-            <button class="btn btn-primary">View all Cities</button>
+            <button class="btn btn-primary">View all Cities Managers</button>
         </a>
         <form action="{{route('citymanagers.store')}}" method="POST">
             @csrf
@@ -48,7 +48,7 @@
                 <label for="exampleInputPassword1">City</label>
                 <select class="form-control" name="city_id">
                     @foreach($cities as $city)
-                        <option value="{{$city->id}}">{{$city->name}} - </option>
+                    <option value="{{$city->id}}">{{$city->name}} - {{$city->country->name}}</option>
                     @endforeach
                 </select>
                 {{-- {{$city->country->name}} --}}

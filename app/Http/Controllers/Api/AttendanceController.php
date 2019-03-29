@@ -21,7 +21,7 @@ class AttendanceController extends Controller
                 'session_name' => $attendance->session->name,
                 'gym_name'=> $attendance->session->gym->name,
                 'attendance date' => $attendance->attendance_date,
-                'attendance_time'=> $attendance->attendance_date
+                'attendance_time'=> $attendance->attendance_time
             ];
         }
         if ($history)

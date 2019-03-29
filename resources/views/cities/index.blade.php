@@ -4,25 +4,32 @@
 @endsection
 @section('content')
 
-
-<div class="col">
-    <a href="{{ url('cities/create') }}">
-        <button class="btn btn-primary">Add new city</button>
-    </a>
-    <table id="datatable">
-        <thead>
-            <th>ID</th>
-            <th>City Name</th>
-            <th>Country Name</th>
-            <th>Edit City</th>
-            <th>Delete City</th>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
-</div>
-
+    @if(auth()->user() && auth()->user()->can('manage cities'))
+        <div class="col">
+            <a href="{{ url('cities/create') }}">
+                <button class="btn btn-primary">Add new city</button>
+            </a>
+            <table id="datatable">
+                <thead>
+                    <th>ID</th>
+                    <th>City Name</th>
+                    <th>Country Name</th>
+                    <th>Edit City</th>
+                    <th>Delete City</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    @else
+        <div style="margin-left:30%;margin-top:20px;">
+            <h2>You don't have the premission to manage cities</h2>
+            <a href="{{url('login')}}">
+                <button class="btn btn-primary">click here to login</button>
+            </a>
+        </div>
+    @endif
 
 
 @endsection
