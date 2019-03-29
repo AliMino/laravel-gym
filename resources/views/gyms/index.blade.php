@@ -1,10 +1,9 @@
 @extends('layouts.base')
-@section('content')
 
+@section('content')
     @if(auth()->user() && auth()->user()->can('manage gyms'))
         <section class="content">
             <div class="row">
-
                 <div class="col-xs-12">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <div class="box">
@@ -29,89 +28,73 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <table id="example" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">City</th>
-      <th scope="col">Created at</th>
-      <th scope="col">Image</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-
-    </tr>
-  </thead>
-</table>
-</div>
-                <!-- /.box-body -->
+                </div>
             </div>
         </section>
     @else
         <div style="margin-left:30%;margin-top:20px;">
             <h2>You don't have the premission to manage gyms</h2>
-            <a href="{{url('login')}}">click here to login</a>
+            @if(auth()->user() == null)
+                <a href="{{url('login')}}">click here to login</a>
+            @else
+                <h4>this page only available for gym managers</h4>
+            @endif
         </div>
     @endif
 
-  @endsection
-  @section('scripts')
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-   $(document).ready( function () {
-          $('#example').DataTable( {
-            serverSide: true,
-            ajax: {
+@endsection
+
+@section('scripts')
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#example').DataTable( {
+                serverSide: true,
+                ajax: {
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 url: '/data_gyms',
                 dataType : 'json',
                 type: 'get',
-            },
-            columns: [ { data: 'name'}, { data: 'city'}, { data: 'timestamp'}, {
+                }, columns: [ { data: 'name'}, { data: 'city'}, { data: 'timestamp'}, {
                     //image
                     mRender: function (data, type, row) {
-                        return '<img src="'+row.image+'" height="50" width="100">'
+                    return '<img src="'+row.image+'" height="50" width="100">'
                     }
                 }, {
                     /* EDIT */
                     mRender: function (data, type, row) {
-                        return '<a href="/gyms/'+row.id+'/edit" class="table-edit btn btn-warning" data-id="' + row.id + '">EDIT</a>'
+                    return '<a href="/gyms/'+row.id+'/edit" class="table-edit btn btn-warning" data-id="' + row.id + '">EDIT</a>'
                     }
                 }, {
                     /* DELETE */
                     mRender: function (data, type, row) {
-                        return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger"> Delete </button></a>'
+                    return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger"> Delete </button></a>'
                     }
                 },
-            ],
-            'paging'      : true,
-            'lengthChange': true,
-            'searching'   : true,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : true,
-        });
-
+                ],
+                'paging'      : true,
+                'lengthChange': true,
+                'searching'   : true,
+                'ordering'    : true,
+                'info'        : true,
+                'autoWidth'   : true,
+            });
         });
         $(document).on('click', '.delete', function(){
-        var id = $(this).attr('id');
-        if(confirm("Are you sure you want to Delete this Package?")) {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url:"/gyms/"+id,
-                type:'DELETE',
-                success:function(data)
-                {
-                    alert("package deleted successfully");
-                    $('#example').DataTable().ajax.reload();
-                }
-            })
-        }
-        else
-        {
-            return false;
-        }
-    });
+            var id = $(this).attr('id');
+            if(confirm("Are you sure you want to delete this gym?")) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url:"/gyms/"+id,
+                    type:'DELETE',
+                    success:function(data) {
+                        alert("package deleted successfully");
+                        $('#example').DataTable().ajax.reload();
+                    }
+                })
+            } else { return false; }
+        });
     </script>
 @endsection
