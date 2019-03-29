@@ -208,7 +208,7 @@
 
                 @if(auth()->user() && auth()->user()->can('manage attendance'))
                 <li>
-                    <a href="pages/calendar.html">
+                    <a href="{{route('attendance.index')}}">
                         <i class="fas fa-edit"></i>
                         <span>Attendance</span>
                     </a>
