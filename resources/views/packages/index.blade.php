@@ -13,8 +13,8 @@
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">No of Sessions</th>
+                            <th scope="col">Package Name</th>
+                            <th scope="col">Number of Sessions</th>
                             <th scope="col">Price</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -61,7 +61,7 @@
             "columns": [
                 { "data": "name" },
                 { "data": "no_of_sessions" },
-                { "data": "price_cent" },
+                { "data": "price" },
                 {
                     mRender: function (data, type, row) {
                         return '<a href="/packages/'+row.id+'/edit" class="table-edit" data-id="' + row.id + '"><button type="button" class="btn btn-block btn-success btn-flat">Edit</button></a>'

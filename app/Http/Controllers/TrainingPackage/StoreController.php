@@ -9,7 +9,14 @@ use App\Http\Controllers\Controller;
 class StoreController extends Controller
 {
     public function store() {
-        TrainingPackage::create(request()->all());
+        $request = request();
+        // TrainingPackage::create(request()->all());
+        TrainingPackage::create([
+            "name" => $request->name,
+            "no_of_sessions" => $request->no_of_sessions,
+            "price_cent" => 100 * $request->price_cent,
+            "gym_id" => $request->gym_id,
+        ]);
         return redirect()->route('packages.index');
     }
 
@@ -30,7 +37,10 @@ class StoreController extends Controller
      */
 
     public function data_packages(){
-        return datatables()->of(TrainingPackage::with('gyms'))->toJson();
+        return datatables()->of(TrainingPackage::with('gyms'))
+        ->addColumn('price', function(TrainingPackage $package) {
+            return $package->price_cent / 100;
+        } )->toJson();
     }
 
 }

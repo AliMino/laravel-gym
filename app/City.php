@@ -16,4 +16,7 @@ class city extends Model
     public function manager() {
         return $this->belongsTo("App\User");
     }
+    public function purchasedPackages() {
+        return $this->hasManyThrough('App\PurchasedPackage', 'App\Gym')->get();
+    }
 }
