@@ -15,6 +15,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                     <table id="citymanagers" class="table table-bordered table-striped">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
                         <thead>
                         <tr>
                         
@@ -76,11 +77,33 @@
                 },
                 {
                     mRender: function (data, type, row) {
-                        return '<center><a href="/citymanagers/'+row.id+'"  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></center>'
+                        return '<a  href="#" class="delete" id="'+row.id+'"><buttontype="button" class="btn btn-block btn-danger btn-flat"> Delete </button></a>'
                     }
                 },
             ],
         } );
+        $(document).on('click', '.delete', function(){
+            var id = $(this).attr('id');
+            if(confirm("Are you sure you want to Delete this city Manager?"))
+            {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url:"/citymanagers/"+id,
+                    type:'DELETE',
+                    success:function(data)
+                    {
+                        alert("Manager deleted successfully");
+                        $('#citymanagers').DataTable().ajax.reload();
+                    }
+                })
+            }
+            else
+            {
+                return false;
+            }
+        });
     } );
     </script>
 
