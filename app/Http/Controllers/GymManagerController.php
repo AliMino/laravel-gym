@@ -116,7 +116,9 @@ class GymManagerController extends Controller
     public function ban( $user)
     {
         $banedUser=User::find($user);
-        $banedUser->ban();
+        $banedUser->ban([
+            'comment' => 'Enjoy your ban!',
+        ]);
         return redirect()->route('gymmanagers.index');
     }
 

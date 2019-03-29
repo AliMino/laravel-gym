@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    @if (session('ban-reason'))
+                        <div class="alert alert-danger" >enjoy your ban</div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
