@@ -1,45 +1,50 @@
 @extends('layouts.base')
 @section('content')
 
-<section class="content">
-      <div class="row">
-        <a href="{{route('gymmanagers.create')}}">
-            <button class="btn btn-primary" style="margin-left:15px;margin-bottom:15px">Add Gym Manager</button>
-        </a>
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Gym Managers</h3>
+    @if(auth()->user() && auth()->user()->can('manage gym managers'))
+        <section class="content">
+            <div class="row">
+                <a href="{{route('gymmanagers.create')}}">
+                    <button class="btn btn-primary" style="margin-left:15px;margin-bottom:15px">Add Gym Manager</button>
+                </a>
+                <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                    <h3 class="box-title">Gym Managers</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                    <table id="gymmanagers" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                        
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>National ID</th>
+                        <th>GYM</th>
+                        <th><center>Edit</center></th>
+                        <th><center>Delete</center></th>
+                        <th><center>Ban/UnBan</center></th>
+                        </tr>
+                        </thead>
+                        
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="gymmanagers" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>National ID</th>
-                  <th>GYM</th>
-                  <th><center>Edit</center></th>
-                  <th><center>Delete</center></th>
-                  <th><center>Ban/UnBan</center></th>
-                </tr>
-                </thead>
-                
-            </table>
+            <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+    @else
+        <div style="margin-left:30%;margin-top:20px;">
+            <h2>You don't have the premission to manage gym manager</h2>
+            <a href="{{url('login')}}">click here to login</a>
         </div>
-        <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </div>
-    <!-- /.col -->
-    </div>
-    <!-- /.row -->
-</section>
-<!-- /.content -->
-
+    @endif
 @endsection
 
 @section('scripts')
