@@ -3,6 +3,9 @@
 
 <section class="content">
       <div class="row">
+        <a href="{{route('gymmanagers.create')}}">
+            <button class="btn btn-primary" style="margin-left:15px;margin-bottom:15px">Add Gym Manager</button>
+        </a>
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">

@@ -44,6 +44,7 @@ class CityManagerController extends Controller
      */
     public function store(StoreManagerRequest $request)
     {
+        // dd($request);
         $user=User::create($request->all());
         $user->assignRole('city manager');
         $request->validate([
